@@ -63,26 +63,10 @@ export default function Contato() {
 
       <footer className="border-t border-[#E5E5E5] py-10">
         <Container>
-          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <div>
-              <p className="text-sm font-semibold text-[#0F172A]">{perfil.nome}</p>
-              <p className="mt-1 inline-flex items-center gap-1.5 text-[13px] text-[#6B7280]">
-                <MapPin size={13} /> {perfil.local}
-              </p>
-            </div>
-            <p className="text-[13px] text-[#6B7280]">
-              Feito em React e Tailwind. Código em{' '}
-              <a
-                href={perfil.github}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="font-medium text-[#6B7280] underline underline-offset-2 transition-all duration-150 hover:text-[#2F6FED]"
-              >
-                github.com/GuVJ
-              </a>
-              .
-            </p>
-          </div>
+          <p className="text-sm font-semibold text-[#0F172A]">{perfil.nome}</p>
+          <p className="mt-1 inline-flex items-center gap-1.5 text-[13px] text-[#6B7280]">
+            <MapPin size={13} /> {perfil.local}
+          </p>
         </Container>
       </footer>
     </>
