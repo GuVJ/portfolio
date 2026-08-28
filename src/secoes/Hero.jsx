@@ -1,35 +1,18 @@
 import { useState } from 'react'
-import { ArrowRight, Github, Linkedin, Mail, MapPin } from 'lucide-react'
+import { ArrowRight, Mail } from 'lucide-react'
 import { Container, BotaoEscuro, BotaoClaro } from '../componentes/ui.jsx'
-import { perfil, pitch, numeros } from '../dados/perfil.js'
+import { pitch, numeros } from '../dados/perfil.js'
 
 export default function Hero() {
   const [modo, setModo] = useState('clt')
   const atual = pitch[modo]
 
   return (
-    <section id="topo" className="pb-16 pt-14 md:pb-24 md:pt-20">
+    <section id="topo" className="pb-10 pt-10 md:pb-14 md:pt-16">
       <Container>
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] font-medium text-[#6B7280]">
-          <span className="inline-flex items-center gap-1.5">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-            </span>
-            Aberto a novas oportunidades
-          </span>
-          <span className="inline-flex items-center gap-1.5">
-            <MapPin size={14} /> {perfil.local}
-          </span>
-        </div>
-
-        <h1 className="mt-6 max-w-[18ch] text-[34px] font-bold leading-[1.08] tracking-tight text-[#0F172A] md:text-[54px]">
+        <h1 className="max-w-[18ch] text-[34px] font-bold leading-[1.08] tracking-tight text-[#0F172A] md:text-[54px]">
           {atual.titulo}
         </h1>
-
-        <p className="mt-3 text-sm font-medium text-[#6B7280] md:text-base">
-          {perfil.nome} &middot; {perfil.cargo} na {perfil.empresa}
-        </p>
 
         {/* Alternador de publico: a mesma trajetoria contada para quem contrata
             CLT e para quem contrata projeto fechado. */}
@@ -71,30 +54,9 @@ export default function Hero() {
           <BotaoClaro href="#contato">
             <Mail size={14} /> Entrar em contato
           </BotaoClaro>
-
-          <div className="ml-1 flex items-center gap-1">
-            <a
-              href={perfil.linkedin}
-              target="_blank"
-              rel="noreferrer noopener"
-              aria-label="LinkedIn"
-              className="flex h-10 w-10 items-center justify-center rounded-xl text-slate-500 transition-all duration-150 hover:bg-slate-50 hover:text-slate-600"
-            >
-              <Linkedin size={18} />
-            </a>
-            <a
-              href={perfil.github}
-              target="_blank"
-              rel="noreferrer noopener"
-              aria-label="GitHub"
-              className="flex h-10 w-10 items-center justify-center rounded-xl text-slate-500 transition-all duration-150 hover:bg-slate-50 hover:text-slate-600"
-            >
-              <Github size={18} />
-            </a>
-          </div>
         </div>
 
-        <dl className="mt-16 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-[#E5E5E5] pt-10 md:grid-cols-4">
+        <dl className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-[#E5E5E5] pt-8 md:grid-cols-4">
           {numeros.map((n) => (
             <div key={n.rotulo}>
               <dt className="text-[28px] font-bold leading-none tracking-tight text-[#0F172A] md:text-[32px]">

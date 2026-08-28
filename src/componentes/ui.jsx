@@ -22,7 +22,7 @@ export function Container({ children, className = '' }) {
 
 export function Secao({ id, rotulo, titulo, descricao, children, className = '' }) {
   return (
-    <section id={id} className={`scroll-mt-24 py-16 md:py-24 ${className}`}>
+    <section id={id} className={`scroll-mt-24 py-10 md:py-14 ${className}`}>
       <Container>
         {rotulo && (
           <p className="mb-3 text-[10px] font-semibold uppercase tracking-widest text-slate-500">
@@ -39,7 +39,7 @@ export function Secao({ id, rotulo, titulo, descricao, children, className = '' 
             {descricao}
           </p>
         )}
-        <div className={rotulo || titulo ? 'mt-10' : ''}>{children}</div>
+        <div className={rotulo || titulo ? 'mt-8' : ''}>{children}</div>
       </Container>
     </section>
   )

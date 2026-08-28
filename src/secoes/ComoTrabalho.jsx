@@ -31,7 +31,7 @@ export default function ComoTrabalho() {
         })}
       </div>
 
-      <div className="mt-12">
+      <div className="mt-10">
         <p className="mb-5 text-[10px] font-semibold uppercase tracking-widest text-slate-500">
           Três entregas que resumem isso
         </p>
