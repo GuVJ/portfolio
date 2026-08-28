@@ -4,6 +4,7 @@ import ComoTrabalho from './secoes/ComoTrabalho.jsx'
 import Trajetoria from './secoes/Trajetoria.jsx'
 import Projetos from './secoes/Projetos.jsx'
 import Servicos from './secoes/Servicos.jsx'
+import Orcamento from './secoes/Orcamento.jsx'
 import StackFormacao from './secoes/StackFormacao.jsx'
 import Contato from './secoes/Contato.jsx'
 
@@ -17,6 +18,7 @@ export default function App() {
         <Trajetoria />
         <Projetos />
         <Servicos />
+        <Orcamento />
         <StackFormacao />
         <Contato />
       </main>

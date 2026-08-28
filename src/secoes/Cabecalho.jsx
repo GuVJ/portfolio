@@ -6,6 +6,7 @@ const LINKS = [
   { rotulo: 'Trajetória', alvo: '#trajetoria' },
   { rotulo: 'Projetos', alvo: '#projetos' },
   { rotulo: 'Serviços', alvo: '#servicos' },
+  { rotulo: 'Orçamento', alvo: '#orcamento' },
   { rotulo: 'Stack', alvo: '#stack' },
 ]
 

@@ -60,6 +60,40 @@ No Windows, o projeto mora dentro do OneDrive num caminho com acento. O atalho
 `C:\Users\gusta\portfolio-dev.cmd` faz `chcp 65001` antes de subir o Vite — o caminho
 curto 8.3 quebra o dev server.
 
+## Assistente de orçamento
+
+A seção `#orcamento` é um assistente que faz cinco perguntas e devolve faixa de
+valor, prazo e um resumo pronto para enviar por WhatsApp ou e-mail.
+
+**O preço não sai da IA.** `src/logica/estimativa.js` é uma função pura: mesmas
+respostas, mesmo número, sempre. A IA só escreve o comentário que acompanha. Se
+o modelo cotasse, o mesmo pedido receberia valores diferentes a cada visita — e
+o cliente teria em mãos uma cotação que ninguém calculou.
+
+**Para mudar quanto ele cobra, edite só `src/dados/orcamento.js`.** O arquivo
+tem `VALOR_HORA` no topo (marcado como *confirmar* — o padrão é referência de
+mercado, não um valor definido), o piso mínimo, a abertura da faixa, as horas
+por tipo de projeto e os multiplicadores de cada resposta.
+
+Conferência do motor, sem dependência nenhuma:
+
+```bash
+node teste-estimativa.mjs
+```
+
+**IA opcional.** `api/orcamento.js` chama a Gemini e precisa de `GEMINI_API_KEY`
+nas variáveis da Vercel. Sem a chave, a função devolve 503 e o front cai no
+texto local — o orçamento inteiro funciona igual, só troca o selo de
+"Texto por IA" para "Motor local". Para gravar a chave use Git Bash, não pipe do
+PowerShell (o pipe prepende um BOM que quebra o header):
+
+```bash
+printf '%s' "SUA_CHAVE" | vercel env add GEMINI_API_KEY production
+```
+
+O `vercel.json` já exclui `/api/` do rewrite de SPA — sem isso o catch-all
+engoliria a chamada da função.
+
 ## Deploy
 
 ```bash

@@ -36,12 +36,12 @@ export default function Servicos() {
               Tem um processo que ainda roda na mão?
             </h3>
             <p className="mt-2.5 text-sm leading-relaxed text-slate-300">
-              Me conta o que trava hoje. Se der para resolver, eu digo como e quanto tempo leva. Se
-              não der, eu digo isso também — de graça e sem rodeio.
+              Responde cinco perguntas do assistente aqui embaixo e sai com faixa de valor, prazo e
+              o resumo pronto para enviar. Sem formulário de contato, sem esperar retorno.
             </p>
           </div>
-          <Botao tom="branco" href="#contato" className="shrink-0">
-            Descrever meu caso <ArrowRight size={14} />
+          <Botao tom="branco" href="#orcamento" className="shrink-0">
+            Simular meu projeto <ArrowRight size={14} />
           </Botao>
         </div>
       </Card>
