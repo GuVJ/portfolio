@@ -1,5 +1,6 @@
 import { Mail, Linkedin, Github, MessageCircle, MapPin } from 'lucide-react'
 import { Secao, Card, Container, CaixaIcone } from '../componentes/ui.jsx'
+import FormularioContato from '../componentes/FormularioContato.jsx'
 import { perfil } from '../dados/perfil.js'
 
 const CANAIS = [
@@ -58,6 +59,13 @@ export default function Contato() {
               </a>
             </Card>
           ))}
+        </div>
+
+        <div className="mt-6">
+          <FormularioContato
+            titulo="Ou me escreve por aqui"
+            descricao="Chega direto no meu painel e eu respondo pelo canal que você preferir."
+          />
         </div>
       </Secao>
 

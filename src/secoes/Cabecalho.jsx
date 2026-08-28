@@ -3,6 +3,7 @@ import { Menu, X } from 'lucide-react'
 import { Container } from '../componentes/ui.jsx'
 
 const LINKS = [
+  { rotulo: 'Cases', alvo: '#cases' },
   { rotulo: 'Trajetória', alvo: '#trajetoria' },
   { rotulo: 'Projetos', alvo: '#projetos' },
   { rotulo: 'Serviços', alvo: '#servicos' },

@@ -1,6 +1,6 @@
 import { Search, Database, Wrench, Activity } from 'lucide-react'
 import { Secao, Card, CaixaIcone } from '../componentes/ui.jsx'
-import { comoTrabalho, casesProfissionais } from '../dados/perfil.js'
+import { comoTrabalho } from '../dados/perfil.js'
 
 const ICONES = [Search, Database, Wrench, Activity]
 
@@ -31,24 +31,6 @@ export default function ComoTrabalho() {
         })}
       </div>
 
-      <div className="mt-10">
-        <p className="mb-5 text-[10px] font-semibold uppercase tracking-widest text-slate-500">
-          Três entregas que resumem isso
-        </p>
-        <div className="grid gap-4 md:grid-cols-3">
-          {casesProfissionais.map((c) => (
-            <Card key={c.titulo} className="p-6">
-              <div className="flex items-center justify-between gap-3">
-                <h3 className="text-base font-semibold text-[#0F172A]">{c.titulo}</h3>
-                <span className="text-[11px] font-medium uppercase tracking-wide text-[#6B7280]">
-                  {c.empresa}
-                </span>
-              </div>
-              <p className="mt-3 text-sm leading-relaxed text-[#6B7280]">{c.texto}</p>
-            </Card>
-          ))}
-        </div>
-      </div>
     </Secao>
   )
 }

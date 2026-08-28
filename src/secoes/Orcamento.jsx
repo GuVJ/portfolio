@@ -14,6 +14,7 @@ import {
 import { Secao, Card, Pill, CaixaIcone } from '../componentes/ui.jsx'
 import { TIPOS, PERGUNTAS, ROTEIRO, AVISO } from '../dados/orcamento.js'
 import { calcularEscopo, montarResumo } from '../logica/escopo.js'
+import FormularioContato from '../componentes/FormularioContato.jsx'
 import { perfil } from '../dados/perfil.js'
 
 const ESPERA_DO_BOT = 380
@@ -363,6 +364,23 @@ function Resultado({ dados, comentario, fonte }) {
       </div>
 
       <p className="mt-4 text-[12px] leading-relaxed text-[#6B7280]">{AVISO}</p>
+
+      {/* Os dois botoes acima abrem o app de mensagem e dependem da pessoa
+          enviar. Aqui ela deixa o contato e quem corre atras sou eu. O escopo
+          vai junto — sem valor, pela mesma razao do resumo: numero de preco
+          nao sai daqui. */}
+      <div className="mt-6">
+        <FormularioContato
+          orcamento={{
+            tipo: dados.tipo.rotulo,
+            semanas: dados.semanas,
+            horas: dados.horas,
+            resumo: dados.resumo,
+          }}
+          titulo="Prefere que eu te procure?"
+          descricao="Deixa o contato que eu mando a proposta fechada com esse escopo."
+        />
+      </div>
     </div>
   )
 }

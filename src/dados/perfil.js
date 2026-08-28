@@ -19,22 +19,13 @@ export const perfil = {
 }
 
 export const pitch = {
-  clt: {
-    rotulo: 'Contratação CLT',
-    titulo: 'Dado de gente que vira decisão de negócio.',
-    texto:
-      'Sete anos em People Analytics, sempre dentro do RH — do estágio no Santander à coordenação na Alloha Fibra, onde lidero um time de duas pessoas, atendo nove áreas numa operação nacional e uso GenAI no Databricks no dia a dia. Levanto o requisito, faço o ETL, construo o dashboard e, quando o dashboard não resolve, construo a ferramenta.',
-    cta: 'Ver minha trajetória',
-    ctaAlvo: '#trajetoria',
-  },
-  pj: {
-    rotulo: 'Projeto PJ',
-    titulo: 'Do requisito ao sistema no ar.',
-    texto:
-      'Entrego projeto fechado: dashboard, automação de processo, ferramenta interna sob medida ou IA acoplada a um sistema que já existe. Tenho copiloto de IA rodando em produção em cliente real e em plataforma própria — com o número saindo do banco e o modelo cuidando só da linguagem. Escopo, prazo e entrega.',
-    cta: 'Ver o que eu entrego',
-    ctaAlvo: '#servicos',
-  },
+  titulo: 'Dado de gente que vira decisão de negócio.',
+  texto:
+    'Sete anos em People Analytics, sempre dentro do RH — do estágio no Santander à coordenação na Alloha Fibra, onde lidero um time de duas pessoas, atendo nove áreas numa operação nacional e uso GenAI no Databricks no dia a dia. Levanto o requisito, faço o ETL, construo o dashboard e, quando o dashboard não resolve, construo a ferramenta. Aqui estão as duas coisas: a carreira inteira e os projetos que entrego como PJ.',
+  acoes: [
+    { rotulo: 'Ver minha trajetória', alvo: '#trajetoria', principal: true },
+    { rotulo: 'Tenho um projeto', alvo: '#orcamento' },
+  ],
 }
 
 export const numeros = [
@@ -229,22 +220,60 @@ export const projetos = [
 
 export const casesProfissionais = [
   {
-    titulo: 'Offboarding orquestrado',
+    titulo: 'Offboarding que deixou de ser risco',
     empresa: 'Dock',
-    texto:
-      'O desligamento passava por quatro áreas sem sistema que ligasse uma na outra. Construí a ferramenta que orquestrou o fluxo inteiro e deu rastreabilidade ao processo. Mais de 700 desligamentos passaram por ela.',
+    periodo: '2023 — 2024',
+    metrica: '700+',
+    metricaRotulo: 'desligamentos processados',
+    problema:
+      'O desligamento passava por quatro áreas — Business Partners, Folha, Suporte de Equipamentos e Segurança da Informação — sem nenhum sistema ligando uma na outra. Cada uma tinha o seu controle, ninguém enxergava o processo inteiro, e um acesso esquecido só aparecia quando virava problema.',
+    acao:
+      'Construí e sustentei a ferramenta que orquestrou o fluxo de ponta a ponta: cada área recebe a sua tarefa, o andamento fica visível para todo mundo e nada avança sem a etapa anterior estar fechada. Por cima, dashboards de acompanhamento operacional e estratégico.',
+    resultado:
+      'Mais de 700 desligamentos passaram pela ferramenta. Caiu o risco operacional, o processo ficou mais rápido, e a diferença apareceu na experiência de quem estava saindo e de quem precisava conduzir a conversa.',
+    stack: ['AppSheet', 'PostgreSQL', 'Looker Studio'],
   },
   {
-    titulo: 'Banco de horas sob controle',
+    titulo: 'Banco de horas que parou de sangrar',
     empresa: 'Dock',
-    texto:
-      'O passivo crescia sem gestão ativa e o custo de quitação era imprevisível. Ferramenta de acompanhamento mais e-mail semanal de insight para cada gestor derrubaram o custo em 80%.',
+    periodo: '2022 — 2023',
+    metrica: '80%',
+    metricaRotulo: 'de redução no custo',
+    problema:
+      'O passivo de banco de horas crescia sem gestão ativa. O custo de quitação era alto e, pior, imprevisível: só se sabia o tamanho do problema quando a conta chegava, e aí não havia mais o que fazer.',
+    acao:
+      'Ferramenta de acompanhamento do saldo mais um e-mail semanal com insight personalizado para cada gestor — não um relatório geral que ninguém abre, mas o número do time dele, na caixa dele, a tempo de agir.',
+    resultado:
+      'Redução de 80% no custo, comparando o período com gestão das ferramentas contra o período sem gestão. O passivo virou algo que se administra durante o ano, não uma surpresa no fechamento.',
+    stack: ['AppSheet', 'PostgreSQL', 'E-mail automático'],
   },
   {
-    titulo: 'Portal que se mede',
-    empresa: 'Dock',
-    texto:
-      'Criei o portal interno de People Analytics e coloquei Google Analytics nele. Saber qual dashboard era de fato aberto mudou a priorização do time inteiro.',
+    titulo: 'Uma área de People Analytics do zero',
+    empresa: 'Adventures',
+    periodo: '2021 — 2022',
+    metrica: 'Do zero',
+    metricaRotulo: 'à área rodando',
+    problema:
+      'Não existia People Analytics. Nem indicador definido, nem fonte confiável, nem rotina — cada pedido do RH virava uma extração manual diferente, e duas pessoas respondiam a mesma pergunta com números diferentes.',
+    acao:
+      'Implantei a área inteira: levantamento de requisito com o cliente interno, ETL em Python com pandas, dashboards e disparo automático de e-mail com insight personalizado. Montei também o portal que virou a porta de entrada de RH e gestores de outras áreas.',
+    resultado:
+      'A área saiu do papel e passou a operar com régua própria. É a experiência que uso hoje quando uma empresa me chama para estruturar People Analytics sem ter time de dados.',
+    stack: ['Python', 'pandas', 'Looker Studio', 'Google Sites'],
+  },
+  {
+    titulo: 'O ritmo semanal que gera a decisão',
+    empresa: 'Alloha Fibra',
+    periodo: '2025 — atual',
+    metrica: '9 áreas',
+    metricaRotulo: 'atendidas como suporte principal',
+    problema:
+      'Dashboard que ninguém abre não muda decisão nenhuma. O risco de uma área de dados madura não é falta de painel — é o painel virar enfeite enquanto a operação segue decidindo no achismo.',
+    acao:
+      'Reunião semanal em cima do dashboard, com acompanhamento contínuo dos temas que importam: headcount, turnover e custo de rescisão, absenteísmo, horas extras, segurança do trabalho e seleção. Mais o fechamento mensal, com despesa de pessoal, posicionamento salarial e orçamento.',
+    resultado:
+      'A proximidade com as áreas faz o desvio aparecer em dias, não no fechamento. É o que eu aprendi que mais gera valor em People Analytics — e não é a tecnologia, é o ritmo.',
+    stack: ['Databricks', 'SQL', 'Power BI', 'Python', 'GenAI'],
   },
 ]
 

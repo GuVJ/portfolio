@@ -1,6 +1,7 @@
 import Cabecalho from './secoes/Cabecalho.jsx'
 import Hero from './secoes/Hero.jsx'
 import ComoTrabalho from './secoes/ComoTrabalho.jsx'
+import Cases from './secoes/Cases.jsx'
 import Trajetoria from './secoes/Trajetoria.jsx'
 import Projetos from './secoes/Projetos.jsx'
 import Servicos from './secoes/Servicos.jsx'
@@ -15,6 +16,7 @@ export default function App() {
       <main>
         <Hero />
         <ComoTrabalho />
+        <Cases />
         <Trajetoria />
         <Projetos />
         <Servicos />
