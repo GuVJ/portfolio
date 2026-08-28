@@ -36,8 +36,8 @@ export default function Servicos() {
               Tem um processo que ainda roda na mão?
             </h3>
             <p className="mt-2.5 text-sm leading-relaxed text-slate-300">
-              Responde cinco perguntas do assistente aqui embaixo e sai com faixa de valor, prazo e
-              o resumo pronto para enviar. Sem formulário de contato, sem esperar retorno.
+              Responde cinco perguntas do assistente aqui embaixo e sai com o escopo e o prazo
+              organizados — e o resumo pronto para eu te mandar a proposta.
             </p>
           </div>
           <Botao tom="branco" href="#orcamento" className="shrink-0">

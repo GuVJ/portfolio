@@ -1,32 +1,21 @@
 // ============================================================================
-// TABELA DE PRECOS — este e o unico arquivo que voce precisa editar para mudar
-// quanto o assistente cobra. Tudo abaixo alimenta um calculo deterministico em
-// `src/logica/estimativa.js`. A IA NAO inventa valor: ela so conversa e explica
-// o numero que este arquivo produziu.
+// ESCOPO — o que o assistente pergunta e quanto esforco cada resposta gera.
+//
+// NAO HA DINHEIRO NESTE ARQUIVO, de proposito. Este modulo entra no bundle que
+// vai para o navegador; qualquer constante aqui e legivel no devtools. Valor
+// hora, piso e faixa vivem em `precos.private.js`, que fica fora do repo e nao
+// e importado por nada dentro de `src/`.
+//
+// O site mostra escopo, prazo e entregas. O valor sai na conversa.
 // ============================================================================
-
-// >>> CONFIRMAR ANTES DE DIVULGAR O LINK <<<
-// Este e o unico numero que muda todos os outros. O padrao abaixo e uma
-// referencia de mercado para BI/dados senior no Brasil, NAO um valor que o
-// Gustavo tenha definido. Troque pelo seu e o resto se ajusta sozinho.
-export const VALOR_HORA = 180
-
-// Piso: abaixo disso o projeto nao paga o custo de contexto (reuniao, setup,
-// levantamento). O assistente avisa em vez de cotar.
-export const VALOR_MINIMO = 3500
-
-// Quanto a faixa abre para baixo e para cima em torno da estimativa central.
-// Faixa honesta protege os dois lados: ninguem ancora num numero exato que
-// ainda nao foi escopado.
-export const FAIXA = { piso: 0.85, teto: 1.35 }
 
 // Horas produtivas por semana dedicadas a projeto PJ. O Gustavo e CLT em tempo
 // integral — isto e trabalho de noite e fim de semana, e o prazo tem que
 // refletir isso.
 export const HORAS_POR_SEMANA = 12
 
-// Acima disto o projeto deixa de caber em regime PJ noturno. Em vez de cotar um
-// prazo que ninguem vai cumprir, o assistente propoe fasear — e cota a fase 1.
+// Acima disto o projeto deixa de caber em regime PJ noturno. Em vez de prometer
+// um prazo que ninguem cumpre, o assistente propoe fasear.
 export const PRAZO_MAXIMO_SEMANAS = 14
 
 // ---------------------------------------------------------------------------
@@ -138,8 +127,8 @@ export const PERGUNTAS = [
     pergunta: 'E depois de entregue?',
     ajuda: 'Dá para entregar e sair, ou ficar cuidando.',
     opcoes: [
-      { id: 'entrega', rotulo: 'Só a entrega, a gente cuida daqui', mensal: 0 },
-      { id: 'suporte', rotulo: 'Quero suporte mensal', mensal: 0.12 },
+      { id: 'entrega', rotulo: 'Só a entrega, a gente cuida daqui', suporte: false },
+      { id: 'suporte', rotulo: 'Quero suporte mensal', suporte: true },
     ],
   },
 ]
@@ -149,14 +138,14 @@ export const PERGUNTAS = [
 // ---------------------------------------------------------------------------
 export const ROTEIRO = {
   saudacao:
-    'Oi. Sou o assistente do Gustavo e faço uma coisa só: entender o que você precisa e te dar uma faixa de valor e prazo antes de qualquer reunião.',
-  comoFunciona: 'São cinco perguntas rápidas. No fim você leva a estimativa e o resumo pronto para enviar.',
+    'Oi. Sou o assistente do Gustavo. Faço cinco perguntas para entender o que você precisa e te devolvo o escopo e o prazo já organizados.',
+  comoFunciona: 'Leva menos de um minuto. No fim você leva o resumo pronto para enviar, e o Gustavo já responde com a proposta.',
   primeiraPergunta: 'Para começar: que tipo de projeto é?',
   pedidoDeTexto: 'Quer contar em uma ou duas linhas o que trava hoje? Ajuda a apontar o risco certo — mas pode pular.',
-  encerramento: 'Pronto. É uma estimativa preliminar, não uma proposta fechada — o número final sai depois de olhar sua base.',
+  encerramento: 'Pronto — é isso que eu entendi do seu projeto. Manda o resumo pelo botão que o Gustavo volta com a proposta.',
 }
 
-// Aviso que aparece junto do valor. Nao remova: e o que impede a faixa de ser
-// lida como proposta.
+// Explica por que nao ha numero na tela. Sem isto, a ausencia de preco parece
+// enrolacao; com isto, parece criterio.
 export const AVISO =
-  'Estimativa preliminar gerada a partir do que você respondeu. Não é proposta fechada nem compromisso de preço — serve para você saber se faz sentido conversar.'
+  'O prazo acima é estimativa a partir do que você respondeu. O valor sai na conversa: depende de detalhes que só aparecem olhando a sua base, e prefiro te dar um número que se sustenta a um que muda depois.'

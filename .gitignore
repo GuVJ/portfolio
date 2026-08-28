@@ -5,3 +5,6 @@ dist
 *.local
 
 .vercel
+
+# Tabela de precos: fica fora do repo publico
+precos.private.js

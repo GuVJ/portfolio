@@ -1,18 +1,31 @@
 import { useEffect, useRef, useState } from 'react'
-import { Bot, RotateCcw, Send, Sparkles, Cpu, AlertTriangle, Check, MessageCircle, Mail } from 'lucide-react'
+import {
+  Bot,
+  RotateCcw,
+  Send,
+  Sparkles,
+  Cpu,
+  AlertTriangle,
+  Check,
+  MessageCircle,
+  Mail,
+  CalendarClock,
+} from 'lucide-react'
 import { Secao, Card, Pill, CaixaIcone } from '../componentes/ui.jsx'
 import { TIPOS, PERGUNTAS, ROTEIRO, AVISO } from '../dados/orcamento.js'
-import { calcular, montarResumo, formatarBRL } from '../logica/estimativa.js'
+import { calcularEscopo, montarResumo } from '../logica/escopo.js'
 import { perfil } from '../dados/perfil.js'
 
 const ESPERA_DO_BOT = 380
 
+const ABERTURA = [
+  { de: 'bot', texto: ROTEIRO.saudacao },
+  { de: 'bot', texto: ROTEIRO.comoFunciona },
+  { de: 'bot', texto: ROTEIRO.primeiraPergunta },
+]
+
 export default function Orcamento() {
-  const [mensagens, setMensagens] = useState([
-    { de: 'bot', texto: ROTEIRO.saudacao },
-    { de: 'bot', texto: ROTEIRO.comoFunciona },
-    { de: 'bot', texto: ROTEIRO.primeiraPergunta },
-  ])
+  const [mensagens, setMensagens] = useState(ABERTURA)
   const [etapa, setEtapa] = useState({ tipo: 'tipo' })
   const [respostas, setRespostas] = useState({})
   const [textoLivre, setTextoLivre] = useState('')
@@ -68,11 +81,11 @@ export default function Orcamento() {
     setEtapa({ tipo: 'esperando' })
     setPensando(true)
 
-    const calculado = calcular(respostas)
-    const resumo = montarResumo(respostas, calculado, relato)
+    const escopo = calcularEscopo(respostas)
+    const resumo = montarResumo(respostas, escopo, relato)
 
-    // O valor já está calculado neste ponto. A chamada abaixo só busca o texto
-    // que acompanha — se falhar, o orçamento aparece igual.
+    // O escopo já está pronto neste ponto. A chamada abaixo só busca o texto que
+    // acompanha — se falhar, o resultado aparece igual.
     let texto = null
     try {
       const r = await fetch('/api/orcamento', {
@@ -87,17 +100,13 @@ export default function Orcamento() {
 
     setComentario(texto || ROTEIRO.encerramento)
     setFonteDoTexto(texto ? 'gemini' : 'local')
-    setResultado({ ...calculado, resumo })
+    setResultado({ ...escopo, resumo, respostas })
     setPensando(false)
     setEtapa({ tipo: 'fim' })
   }
 
   function recomecar() {
-    setMensagens([
-      { de: 'bot', texto: ROTEIRO.saudacao },
-      { de: 'bot', texto: ROTEIRO.comoFunciona },
-      { de: 'bot', texto: ROTEIRO.primeiraPergunta },
-    ])
+    setMensagens(ABERTURA)
     setEtapa({ tipo: 'tipo' })
     setRespostas({})
     setTextoLivre('')
@@ -113,9 +122,9 @@ export default function Orcamento() {
   return (
     <Secao
       id="orcamento"
-      rotulo="Assistente de orçamento"
-      titulo="Descubra a faixa de preço antes de marcar reunião."
-      descricao="Cinco perguntas e você sai com valor, prazo e o resumo pronto para enviar. E sim — este assistente é ele próprio uma amostra do que eu construo: a conversa é de IA, mas o valor sai de um cálculo em código, auditável, que não muda de ideia entre uma pessoa e outra."
+      rotulo="Assistente de projeto"
+      titulo="Organize o seu projeto antes de marcar reunião."
+      descricao="Cinco perguntas e você sai com o escopo, o prazo e um resumo pronto para enviar — a proposta chega em seguida. E sim: este assistente é ele próprio uma amostra do que eu construo. A conversa é de IA, mas o escopo sai de um cálculo em código que não muda de ideia entre uma pessoa e outra."
     >
       <Card className="overflow-hidden">
         <div className="flex items-center gap-3 border-b border-[#F5F5F5] px-6 py-4">
@@ -123,9 +132,9 @@ export default function Orcamento() {
             <Bot size={18} />
           </CaixaIcone>
           <div className="min-w-0 flex-1">
-            <p className="text-sm font-semibold text-[#0F172A]">Assistente de orçamento</p>
+            <p className="text-sm font-semibold text-[#0F172A]">Assistente de projeto</p>
             <p className="text-[13px] text-[#6B7280]">
-              {resultado ? 'Estimativa pronta' : `${feitas} de ${totalEtapas} respondidas`}
+              {resultado ? 'Escopo pronto' : `${feitas} de ${totalEtapas} respondidas`}
             </p>
           </div>
           {(feitas > 0 || resultado) && (
@@ -152,9 +161,7 @@ export default function Orcamento() {
               <div key={i} className={m.de === 'bot' ? 'flex' : 'flex justify-end'}>
                 <p
                   className={`max-w-[80%] rounded-[18px] px-4 py-2.5 text-sm leading-relaxed ${
-                    m.de === 'bot'
-                      ? 'bg-[#F1F5F9] text-[#0F172A]'
-                      : 'bg-slate-900 text-white'
+                    m.de === 'bot' ? 'bg-[#F1F5F9] text-[#0F172A]' : 'bg-slate-900 text-white'
                   }`}
                 >
                   {m.texto}
@@ -166,16 +173,15 @@ export default function Orcamento() {
               <div className="flex">
                 <p className="rounded-[18px] bg-[#F1F5F9] px-4 py-3 text-sm text-[#6B7280]">
                   <span className="inline-flex gap-1">
-                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-[#9CA3AF] [animation-delay:-0.2s]" />
-                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-[#9CA3AF] [animation-delay:-0.1s]" />
-                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-[#9CA3AF]" />
+                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-[#6B7280] [animation-delay:-0.2s]" />
+                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-[#6B7280] [animation-delay:-0.1s]" />
+                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-[#6B7280]" />
                   </span>
                 </p>
               </div>
             )}
           </div>
 
-          {/* --- escolhas --- */}
           {etapa.tipo === 'tipo' && (
             <div className="mt-6 grid gap-2 sm:grid-cols-2">
               {TIPOS.map((t) => (
@@ -227,14 +233,14 @@ export default function Orcamento() {
                 onChange={(e) => setTextoLivre(e.target.value)}
                 maxLength={800}
                 placeholder="Ex.: a aprovação roda por e-mail e ninguém sabe onde parou."
-                className="w-full rounded-[16px] border border-[#F5F5F5] bg-white px-4 py-3 text-sm text-[#0F172A] outline-none transition-all duration-150 placeholder:text-[#9CA3AF] focus:border-[#2F6FED] focus:shadow-[0_0_0_3px_rgba(47,111,237,0.1)]"
+                className="w-full rounded-[16px] border border-[#F5F5F5] bg-white px-4 py-3 text-sm text-[#0F172A] outline-none transition-all duration-150 placeholder:text-[#6B7280] focus:border-[#2F6FED] focus:shadow-[0_0_0_3px_rgba(47,111,237,0.1)]"
               />
               <div className="flex flex-wrap gap-2">
                 <button
                   type="submit"
                   className="inline-flex h-10 items-center gap-1.5 rounded-lg bg-[#2F6FED] px-4 text-[13px] font-semibold text-white transition-all duration-150 hover:bg-[#255EDB]"
                 >
-                  <Send size={14} /> Ver a estimativa
+                  <Send size={14} /> Ver o escopo
                 </button>
                 <button
                   type="button"
@@ -247,7 +253,6 @@ export default function Orcamento() {
             </form>
           )}
 
-          {/* --- resultado --- */}
           {resultado && <Resultado dados={resultado} comentario={comentario} fonte={fonteDoTexto} />}
 
           <div ref={fim} />
@@ -263,11 +268,16 @@ function Resultado({ dados, comentario, fonte }) {
   const zap = `https://wa.me/${perfil.telefoneNumerico}?text=${corpo}`
   const email = `mailto:${perfil.email}?subject=${assunto}&body=${corpo}`
 
+  const escolhas = PERGUNTAS.map((p) => {
+    const o = p.opcoes.find((x) => x.id === dados.respostas[p.id])
+    return o ? o.rotulo : null
+  }).filter(Boolean)
+
   return (
     <div className="mt-6 rounded-[20px] border border-[#F5F5F5] bg-[#F8FAFC] p-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-500">
-          Estimativa preliminar
+          Escopo entendido
         </p>
         <Pill tom={fonte === 'gemini' ? 'info' : 'neutro'}>
           {fonte === 'gemini' ? (
@@ -282,16 +292,22 @@ function Resultado({ dados, comentario, fonte }) {
         </Pill>
       </div>
 
-      <p className="mt-3 text-[28px] font-bold leading-none tracking-tight text-[#0F172A] md:text-[34px]">
-        {formatarBRL(dados.piso)} <span className="text-[#6B7280]">a</span> {formatarBRL(dados.teto)}
-      </p>
-      <p className="mt-2 text-sm text-[#6B7280]">
-        {dados.tipo.rotulo} · cerca de {dados.semanas} semana{dados.semanas > 1 ? 's' : ''}
-        {dados.mensal > 0 && <> · suporte de {formatarBRL(dados.mensal)} por mês</>}
+      <h3 className="mt-3 text-xl font-semibold text-[#0F172A] md:text-2xl">{dados.tipo.rotulo}</h3>
+
+      <p className="mt-3 inline-flex items-center gap-2 rounded-full bg-[#EAF1FF] px-3.5 py-2 text-sm font-semibold text-[#255EDB]">
+        <CalendarClock size={15} />
+        Cerca de {dados.semanas} semana{dados.semanas > 1 ? 's' : ''}
+        {dados.temSuporte && <span className="font-medium">· com suporte mensal</span>}
       </p>
 
+      <div className="mt-4 flex flex-wrap gap-1.5">
+        {escolhas.map((e) => (
+          <Pill key={e}>{e}</Pill>
+        ))}
+      </div>
+
       {comentario && (
-        <p className="mt-4 border-l-2 border-[#DCE8FF] pl-4 text-sm leading-relaxed text-[#0F172A]">
+        <p className="mt-5 border-l-2 border-[#DCE8FF] pl-4 text-sm leading-relaxed text-[#0F172A]">
           {comentario}
         </p>
       )}
@@ -300,8 +316,8 @@ function Resultado({ dados, comentario, fonte }) {
         <div className="mt-5 rounded-[16px] border border-[#DCE8FF] bg-[#EAF1FF] p-4">
           <p className="text-[13px] font-semibold text-[#0F172A]">Sugestão: começar por uma fase 1</p>
           <p className="mt-1 text-[13px] leading-relaxed text-[#0F172A]">
-            {formatarBRL(dados.fase1.piso)} a {formatarBRL(dados.fase1.teto)} em cerca de{' '}
-            {dados.fase1.semanas} semanas, entregando primeiro a fatia que já gera decisão.
+            Cerca de {dados.fase1.semanas} semanas, entregando primeiro a fatia que já gera decisão.
+            O resto vira etapa 2, com o aprendizado da primeira.
           </p>
         </div>
       )}
@@ -336,7 +352,7 @@ function Resultado({ dados, comentario, fonte }) {
           rel="noreferrer noopener"
           className="inline-flex h-11 items-center gap-2 rounded-[24px] bg-slate-900 px-6 text-xs font-semibold uppercase tracking-widest text-white transition-all duration-150 hover:bg-slate-800 active:scale-95"
         >
-          <MessageCircle size={14} /> Mandar no WhatsApp
+          <MessageCircle size={14} /> Receber a proposta
         </a>
         <a
           href={email}

@@ -60,39 +60,61 @@ No Windows, o projeto mora dentro do OneDrive num caminho com acento. O atalho
 `C:\Users\gusta\portfolio-dev.cmd` faz `chcp 65001` antes de subir o Vite — o caminho
 curto 8.3 quebra o dev server.
 
-## Assistente de orçamento
+## Assistente de projeto
 
-A seção `#orcamento` é um assistente que faz cinco perguntas e devolve faixa de
-valor, prazo e um resumo pronto para enviar por WhatsApp ou e-mail.
+A seção `#orcamento` faz cinco perguntas e devolve **escopo, prazo e entregas** —
+mais um resumo pronto para o visitante enviar por WhatsApp ou e-mail.
 
-**O preço não sai da IA.** `src/logica/estimativa.js` é uma função pura: mesmas
-respostas, mesmo número, sempre. A IA só escreve o comentário que acompanha. Se
-o modelo cotasse, o mesmo pedido receberia valores diferentes a cada visita — e
-o cliente teria em mãos uma cotação que ninguém calculou.
+**O site nunca mostra preço.** Foi decisão do Gustavo: valor solto na tela, sem
+alguém para explicar o que está dentro dele, faz o cliente achar caro e sair. O
+assistente qualifica e organiza; o número sai na conversa.
 
-**Para mudar quanto ele cobra, edite só `src/dados/orcamento.js`.** O arquivo
-tem `VALOR_HORA` no topo (marcado como *confirmar* — o padrão é referência de
-mercado, não um valor definido), o piso mínimo, a abertura da faixa, as horas
-por tipo de projeto e os multiplicadores de cada resposta.
+E não é só a tela que não mostra — **não existe preço no bundle**. `VALOR_HORA`,
+piso, faixa e percentual de suporte vivem em `precos.private.js`, que está no
+`.gitignore` e não é importado por nada dentro de `src/`. Esconder só da
+interface seria cosmético: qualquer pessoa leria as constantes no devtools.
 
-Conferência do motor, sem dependência nenhuma:
+| Arquivo | O que tem | Vai para o navegador? |
+|---|---|---|
+| `src/dados/orcamento.js` | perguntas, horas por tipo, multiplicadores | sim |
+| `src/logica/escopo.js` | horas → prazo, riscos, faseamento | sim |
+| `precos.private.js` | valor hora, piso, faixa, suporte | **não** |
+| `orcar.mjs` | converte escopo em reais | **não** (roda local) |
+
+### Quando chega um lead
+
+A mensagem que o cliente envia termina com uma linha `Ref.:` — a abreviação das
+respostas que já estão escritas acima dela. Cole em:
 
 ```bash
-node teste-estimativa.mjs
+node orcar.mjs ferramenta.varios.medio.sim.normal.suporte
 ```
 
-**IA opcional.** `api/orcamento.js` chama a Gemini e precisa de `GEMINI_API_KEY`
-nas variáveis da Vercel. Sem a chave, a função devolve 503 e o front cai no
-texto local — o orçamento inteiro funciona igual, só troca o selo de
-"Texto por IA" para "Motor local". Para gravar a chave use Git Bash, não pipe do
-PowerShell (o pipe prepende um BOM que quebra o header):
+e você tem faixa, horas, prazo e suporte na hora. Sem argumento, `node orcar.mjs`
+imprime a tabela inteira de cenários para calibrar o preço.
+
+Na primeira vez:
+
+```bash
+cp precos.exemplo.js precos.private.js
+```
+
+e ponha os seus valores — o `VALOR_HORA` do exemplo é referência de mercado, não
+um número definido.
+
+### IA opcional
+
+`api/orcamento.js` chama a Gemini para escrever o comentário final e precisa de
+`GEMINI_API_KEY` nas variáveis da Vercel. Sem a chave devolve 503 e o front cai
+no texto local — o escopo aparece igual, só troca o selo de "Texto por IA" para
+"Motor local". A função nunca recebe nem devolve valor. Para gravar a chave use
+Git Bash, não pipe do PowerShell (o pipe prepende um BOM que quebra o header):
 
 ```bash
 printf '%s' "SUA_CHAVE" | vercel env add GEMINI_API_KEY production
 ```
 
-O `vercel.json` já exclui `/api/` do rewrite de SPA — sem isso o catch-all
-engoliria a chamada da função.
+O `vercel.json` já exclui `/api/` do rewrite de SPA.
 
 ## Deploy
 
