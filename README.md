@@ -4,7 +4,7 @@ Site de portfólio profissional. Atende dois públicos na mesma página: quem co
 CLT e quem contrata projeto fechado como PJ. O alternador do topo troca a proposta e
 o CTA sem recarregar nada.
 
-**No ar:** https://portfolio-gustavo.vercel.app
+**No ar:** https://gustavovj.vercel.app
 
 ## Stack
 
@@ -59,6 +59,24 @@ npm run preview  # serve o build
 No Windows, o projeto mora dentro do OneDrive num caminho com acento. O atalho
 `C:\Users\gusta\portfolio-dev.cmd` faz `chcp 65001` antes de subir o Vite — o caminho
 curto 8.3 quebra o dev server.
+
+## Deploy
+
+```bash
+npm run deploy    # vercel --prod --yes
+```
+
+**Cuidado com o alias.** `gustavovj.vercel.app` e os outros apelidos
+(`gustavo-virgilio`, `gustavovirgilio`) foram criados com `vercel alias set`, que
+aponta para um deploy **especifico** — nao e dominio de projeto e nao acompanha
+sozinho os deploys seguintes. Depois de cada `npm run deploy`, reaponte:
+
+```bash
+vercel alias set <url-do-novo-deploy> gustavovj.vercel.app
+```
+
+Se o site virar o `gustavovj.com.br` de verdade, isso deixa de ser necessario:
+dominio proprio adicionado ao projeto passa a seguir a producao automaticamente.
 
 ## Estrutura
 
