@@ -58,7 +58,7 @@ export default function Cabecalho() {
             onClick={() => setAberto((v) => !v)}
             aria-label={aberto ? 'Fechar menu' : 'Abrir menu'}
             aria-expanded={aberto}
-            className="flex h-10 w-10 items-center justify-center rounded-[16px] text-slate-400 transition-all duration-150 hover:bg-slate-50 hover:text-slate-600 md:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-[16px] text-slate-500 transition-all duration-150 hover:bg-slate-50 hover:text-slate-600 md:hidden"
           >
             {aberto ? <X size={18} /> : <Menu size={18} />}
           </button>

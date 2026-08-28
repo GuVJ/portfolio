@@ -62,7 +62,7 @@ export default function Projetos() {
                 ))}
               </ul>
 
-              {p.nota && <p className="mt-5 text-[13px] italic leading-relaxed text-[#9CA3AF]">{p.nota}</p>}
+              {p.nota && <p className="mt-5 text-[13px] italic leading-relaxed text-[#6B7280]">{p.nota}</p>}
             </div>
 
             <div className="flex flex-wrap gap-1.5 border-t border-[#F5F5F5] bg-[#F8FAFC] px-6 py-4 md:px-8">

@@ -78,7 +78,7 @@ export default function Hero() {
               target="_blank"
               rel="noreferrer noopener"
               aria-label="LinkedIn"
-              className="flex h-10 w-10 items-center justify-center rounded-xl text-slate-400 transition-all duration-150 hover:bg-slate-50 hover:text-slate-600"
+              className="flex h-10 w-10 items-center justify-center rounded-xl text-slate-500 transition-all duration-150 hover:bg-slate-50 hover:text-slate-600"
             >
               <Linkedin size={18} />
             </a>
@@ -87,7 +87,7 @@ export default function Hero() {
               target="_blank"
               rel="noreferrer noopener"
               aria-label="GitHub"
-              className="flex h-10 w-10 items-center justify-center rounded-xl text-slate-400 transition-all duration-150 hover:bg-slate-50 hover:text-slate-600"
+              className="flex h-10 w-10 items-center justify-center rounded-xl text-slate-500 transition-all duration-150 hover:bg-slate-50 hover:text-slate-600"
             >
               <Github size={18} />
             </a>

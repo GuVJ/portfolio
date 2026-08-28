@@ -23,7 +23,7 @@ export default function Trajetoria() {
               </div>
               <div className="shrink-0 md:text-right">
                 <p className="text-[13px] font-medium text-[#6B7280]">{exp.periodo}</p>
-                <p className="mt-0.5 text-[12px] text-[#9CA3AF]">{exp.setor}</p>
+                <p className="mt-0.5 text-[12px] text-[#6B7280]">{exp.setor}</p>
               </div>
             </div>
 

@@ -1,5 +1,5 @@
 import { BarChart3, Cog, Boxes, Users, Sparkles, HardHat, ArrowRight } from 'lucide-react'
-import { Secao, Card, CaixaIcone, BotaoEscuro } from '../componentes/ui.jsx'
+import { Secao, Card, CaixaIcone, Botao } from '../componentes/ui.jsx'
 import { servicos } from '../dados/perfil.js'
 
 const ICONES = [BarChart3, Cog, Boxes, Users, Sparkles, HardHat]
@@ -27,7 +27,9 @@ export default function Servicos() {
         })}
       </div>
 
-      <Card className="mt-4 bg-slate-900 p-8 md:p-10">
+      {/* Card escuro: o fundo vem da variante `tom`, nunca de className —
+          bg-white da base venceria a cascata e o CTA sumiria. */}
+      <Card tom="escuro" className="mt-4 p-8 md:p-10">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="max-w-[52ch]">
             <h3 className="text-xl font-semibold text-white">
@@ -38,12 +40,9 @@ export default function Servicos() {
               não der, eu digo isso também — de graça e sem rodeio.
             </p>
           </div>
-          <BotaoEscuro
-            href="#contato"
-            className="shrink-0 border border-white/15 bg-white text-slate-900 hover:bg-slate-100"
-          >
+          <Botao tom="branco" href="#contato" className="shrink-0">
             Descrever meu caso <ArrowRight size={14} />
-          </BotaoEscuro>
+          </Botao>
         </div>
       </Card>
     </Secao>

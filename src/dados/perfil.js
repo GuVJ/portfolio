@@ -188,10 +188,7 @@ export const projetos = [
     ],
     stack: ['React', 'Vite', 'Gemini', 'Recharts'],
     nota: 'Dados 100% fictícios, gerados em tempo de execução.',
-    links: [
-      { rotulo: 'Ver no ar', url: 'https://peopleplataform.vercel.app' },
-      { rotulo: 'Código', url: 'https://github.com/GuVJ/people_plataform' },
-    ],
+    links: [{ rotulo: 'Ver no ar', url: 'https://peopleplataform.vercel.app' }],
   },
   {
     nome: 'CRM Fluxo',

@@ -70,7 +70,7 @@ export default function Contato() {
                 <MapPin size={13} /> {perfil.local}
               </p>
             </div>
-            <p className="text-[13px] text-[#9CA3AF]">
+            <p className="text-[13px] text-[#6B7280]">
               Feito em React e Tailwind. Código em{' '}
               <a
                 href={perfil.github}
