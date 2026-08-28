@@ -8,7 +8,7 @@ export default function Projetos() {
       id="projetos"
       rotulo="Projetos"
       titulo="Coisas que eu construí inteiras, do banco de dados à tela."
-      descricao="Nem todo analista de dados escreve o sistema que gera o dado. Esses três existem, estão em produção ou têm código aberto, e cada um resolveu um problema diferente."
+      descricao="Nem todo analista de dados escreve o sistema que gera o dado. Os três têm IA generativa em produção — e nos três vale a mesma regra: o número sai do banco, o modelo cuida só da linguagem. É o que separa uma ferramenta em que dá para confiar de um chat com nome novo."
     >
       <div className="space-y-4">
         {projetos.map((p) => (
