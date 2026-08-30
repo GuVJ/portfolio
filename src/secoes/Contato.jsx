@@ -30,10 +30,11 @@ const CANAIS = [
   },
 ]
 
-export default function Contato() {
+export default function Contato({ tom }) {
   return (
     <>
       <Secao
+      tom={tom}
         id="contato"
         rotulo="Contato"
         titulo="Vaga CLT ou projeto PJ."
@@ -48,12 +49,12 @@ export default function Contato() {
                 rel="noreferrer noopener"
                 className="flex items-center gap-4 p-6"
               >
-                <CaixaIcone tom={principal ? 'escuro' : 'neutro'}>
+                <CaixaIcone tom={principal ? 'contraste' : 'neutro'}>
                   <Icone size={18} />
                 </CaixaIcone>
                 <div className="min-w-0">
-                  <p className="text-[13px] font-medium text-[#6B7280]">{rotulo}</p>
-                  <p className="truncate text-sm font-semibold text-[#0F172A]">{valor}</p>
+                  <p className="text-[13px] font-medium text-[var(--texto-suave)]">{rotulo}</p>
+                  <p className="truncate text-sm font-semibold text-[var(--texto)]">{valor}</p>
                 </div>
               </a>
             </Card>
@@ -61,10 +62,10 @@ export default function Contato() {
         </div>
       </Secao>
 
-      <footer className="border-t border-[#E5E5E5] py-10">
+      <footer className="tema-escuro border-t border-[var(--borda-forte)] bg-[var(--fundo)] py-10">
         <Container>
-          <p className="text-sm font-semibold text-[#0F172A]">{perfil.nome}</p>
-          <p className="mt-1 inline-flex items-center gap-1.5 text-[13px] text-[#6B7280]">
+          <p className="text-sm font-semibold text-[var(--texto)]">{perfil.nome}</p>
+          <p className="mt-1 inline-flex items-center gap-1.5 text-[13px] text-[var(--texto-suave)]">
             <MapPin size={13} /> {perfil.local}
           </p>
         </Container>

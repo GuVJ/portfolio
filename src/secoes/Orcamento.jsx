@@ -25,7 +25,7 @@ const ABERTURA = [
   { de: 'bot', texto: ROTEIRO.primeiraPergunta },
 ]
 
-export default function Orcamento() {
+export default function Orcamento({ tom }) {
   const [mensagens, setMensagens] = useState(ABERTURA)
   const [etapa, setEtapa] = useState({ tipo: 'tipo' })
   const [respostas, setRespostas] = useState({})
@@ -122,19 +122,20 @@ export default function Orcamento() {
 
   return (
     <Secao
+      tom={tom}
       id="orcamento"
       rotulo="Assistente de projeto"
       titulo="Escopo e prazo antes da reunião."
       descricao="Cinco perguntas. A conversa é de IA, o cálculo é em código."
     >
       <Card className="overflow-hidden">
-        <div className="flex items-center gap-3 border-b border-[#F5F5F5] px-6 py-4">
-          <CaixaIcone tom="escuro">
+        <div className="flex items-center gap-3 border-b border-[var(--borda)] px-6 py-4">
+          <CaixaIcone tom="contraste">
             <Bot size={18} />
           </CaixaIcone>
           <div className="min-w-0 flex-1">
-            <p className="text-sm font-semibold text-[#0F172A]">Assistente de projeto</p>
-            <p className="text-[13px] text-[#6B7280]">
+            <p className="text-sm font-semibold text-[var(--texto)]">Assistente de projeto</p>
+            <p className="text-[13px] text-[var(--texto-suave)]">
               {resultado ? 'Escopo pronto' : `${feitas} de ${totalEtapas} respondidas`}
             </p>
           </div>
@@ -142,16 +143,16 @@ export default function Orcamento() {
             <button
               type="button"
               onClick={recomecar}
-              className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-[#F5F5F5] bg-white px-3.5 text-[13px] font-semibold text-[#0F172A] transition-all duration-150 hover:bg-[#F1F5F9]"
+              className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-[var(--borda)] bg-[var(--superficie)] px-3.5 text-[13px] font-semibold text-[var(--texto)] transition-all duration-150 hover:bg-[var(--pilula-fundo)]"
             >
               <RotateCcw size={14} /> Recomeçar
             </button>
           )}
         </div>
 
-        <div className="h-1 w-full bg-[#F1F5F9]">
+        <div className="h-1 w-full bg-[var(--pilula-fundo)]">
           <div
-            className="h-full bg-[#2F6FED] transition-all duration-300"
+            className="h-full bg-[var(--acento)] transition-all duration-300"
             style={{ width: `${progresso}%` }}
           />
         </div>
@@ -162,7 +163,7 @@ export default function Orcamento() {
               <div key={i} className={m.de === 'bot' ? 'flex' : 'flex justify-end'}>
                 <p
                   className={`max-w-[80%] rounded-[18px] px-4 py-2.5 text-sm leading-relaxed ${
-                    m.de === 'bot' ? 'bg-[#F1F5F9] text-[#0F172A]' : 'bg-slate-900 text-white'
+                    m.de === 'bot' ? 'bg-[var(--pilula-fundo)] text-[var(--texto)]' : 'bg-[var(--texto)] text-[var(--fundo)]'
                   }`}
                 >
                   {m.texto}
@@ -172,11 +173,11 @@ export default function Orcamento() {
 
             {pensando && (
               <div className="flex">
-                <p className="rounded-[18px] bg-[#F1F5F9] px-4 py-3 text-sm text-[#6B7280]">
+                <p className="rounded-[18px] bg-[var(--pilula-fundo)] px-4 py-3 text-sm text-[var(--texto-suave)]">
                   <span className="inline-flex gap-1">
-                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-[#6B7280] [animation-delay:-0.2s]" />
-                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-[#6B7280] [animation-delay:-0.1s]" />
-                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-[#6B7280]" />
+                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-[var(--texto-suave)] [animation-delay:-0.2s]" />
+                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-[var(--texto-suave)] [animation-delay:-0.1s]" />
+                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-[var(--texto-suave)]" />
                   </span>
                 </p>
               </div>
@@ -190,10 +191,10 @@ export default function Orcamento() {
                   key={t.id}
                   type="button"
                   onClick={() => escolher(t.rotulo, 'tipo', t.id)}
-                  className="rounded-[16px] border border-[#F5F5F5] bg-white p-4 text-left transition-all duration-150 hover:border-[#DCE8FF] hover:bg-[#EAF1FF]"
+                  className="rounded-[16px] border border-[var(--borda)] bg-[var(--superficie)] p-4 text-left transition-all duration-150 hover:border-[var(--acento-borda)] hover:bg-[var(--acento-fundo)]"
                 >
-                  <span className="block text-sm font-semibold text-[#0F172A]">{t.rotulo}</span>
-                  <span className="mt-1 block text-[13px] leading-snug text-[#6B7280]">
+                  <span className="block text-sm font-semibold text-[var(--texto)]">{t.rotulo}</span>
+                  <span className="mt-1 block text-[13px] leading-snug text-[var(--texto-suave)]">
                     {t.descricao}
                   </span>
                 </button>
@@ -208,7 +209,7 @@ export default function Orcamento() {
                   key={o.id}
                   type="button"
                   onClick={() => escolher(o.rotulo, PERGUNTAS[etapa.indice].id, o.id)}
-                  className="rounded-full border border-[#E5E5E5] bg-white px-4 py-2.5 text-[13px] font-semibold text-[#0F172A] transition-all duration-150 hover:border-[#2F6FED] hover:bg-[#EAF1FF] hover:text-[#255EDB]"
+                  className="rounded-full border border-[var(--borda-forte)] bg-[var(--superficie)] px-4 py-2.5 text-[13px] font-semibold text-[var(--texto)] transition-all duration-150 hover:border-[#2F6FED] hover:bg-[var(--acento-fundo)] hover:text-[var(--acento)]"
                 >
                   {o.rotulo}
                 </button>
@@ -234,19 +235,19 @@ export default function Orcamento() {
                 onChange={(e) => setTextoLivre(e.target.value)}
                 maxLength={800}
                 placeholder="Ex.: a aprovação roda por e-mail e ninguém sabe onde parou."
-                className="w-full rounded-[16px] border border-[#F5F5F5] bg-white px-4 py-3 text-sm text-[#0F172A] outline-none transition-all duration-150 placeholder:text-[#6B7280] focus:border-[#2F6FED] focus:shadow-[0_0_0_3px_rgba(47,111,237,0.1)]"
+                className="w-full rounded-[16px] border border-[var(--borda)] bg-[var(--superficie)] px-4 py-3 text-sm text-[var(--texto)] outline-none transition-all duration-150 placeholder:text-[var(--texto-suave)] focus:border-[var(--acento)] focus:shadow-[0_0_0_3px_rgba(47,111,237,0.1)]"
               />
               <div className="flex flex-wrap gap-2">
                 <button
                   type="submit"
-                  className="inline-flex h-10 items-center gap-1.5 rounded-lg bg-[#2F6FED] px-4 text-[13px] font-semibold text-white transition-all duration-150 hover:bg-[#255EDB]"
+                  className="inline-flex h-10 items-center gap-1.5 rounded-lg bg-[var(--acento)] px-4 text-[13px] font-semibold text-[var(--fundo)] transition-all duration-150 hover:opacity-90"
                 >
                   <Send size={14} /> Ver o escopo
                 </button>
                 <button
                   type="button"
                   onClick={() => fechar('')}
-                  className="inline-flex h-10 items-center rounded-lg px-4 text-[13px] font-medium text-[#6B7280] transition-all duration-150 hover:bg-[#F1F5F9]"
+                  className="inline-flex h-10 items-center rounded-lg px-4 text-[13px] font-medium text-[var(--texto-suave)] transition-all duration-150 hover:bg-[var(--pilula-fundo)]"
                 >
                   Pular
                 </button>
@@ -275,9 +276,9 @@ function Resultado({ dados, comentario, fonte }) {
   }).filter(Boolean)
 
   return (
-    <div className="mt-6 rounded-[20px] border border-[#F5F5F5] bg-[#F8FAFC] p-6">
+    <div className="mt-6 rounded-[20px] border border-[var(--borda)] bg-[var(--superficie-2)] p-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-500">
+        <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--rotulo)]">
           Escopo entendido
         </p>
         <Pill tom={fonte === 'gemini' ? 'info' : 'neutro'}>
@@ -293,9 +294,9 @@ function Resultado({ dados, comentario, fonte }) {
         </Pill>
       </div>
 
-      <h3 className="mt-3 text-xl font-semibold text-[#0F172A] md:text-2xl">{dados.tipo.rotulo}</h3>
+      <h3 className="mt-3 text-xl font-semibold text-[var(--texto)] md:text-2xl">{dados.tipo.rotulo}</h3>
 
-      <p className="mt-3 inline-flex items-center gap-2 rounded-full bg-[#EAF1FF] px-3.5 py-2 text-sm font-semibold text-[#255EDB]">
+      <p className="mt-3 inline-flex items-center gap-2 rounded-full bg-[var(--acento-fundo)] px-3.5 py-2 text-sm font-semibold text-[var(--acento)]">
         <CalendarClock size={15} />
         Cerca de {dados.semanas} semana{dados.semanas > 1 ? 's' : ''}
         {dados.temSuporte && <span className="font-medium">· com suporte mensal</span>}
@@ -308,15 +309,15 @@ function Resultado({ dados, comentario, fonte }) {
       </div>
 
       {comentario && (
-        <p className="mt-5 border-l-2 border-[#DCE8FF] pl-4 text-sm leading-relaxed text-[#0F172A]">
+        <p className="mt-5 border-l-2 border-[var(--acento-borda)] pl-4 text-sm leading-relaxed text-[var(--texto)]">
           {comentario}
         </p>
       )}
 
       {dados.fase1 && (
-        <div className="mt-5 rounded-[16px] border border-[#DCE8FF] bg-[#EAF1FF] p-4">
-          <p className="text-[13px] font-semibold text-[#0F172A]">Sugestão: começar por uma fase 1</p>
-          <p className="mt-1 text-[13px] leading-relaxed text-[#0F172A]">
+        <div className="mt-5 rounded-[16px] border border-[var(--acento-borda)] bg-[var(--acento-fundo)] p-4">
+          <p className="text-[13px] font-semibold text-[var(--texto)]">Sugestão: começar por uma fase 1</p>
+          <p className="mt-1 text-[13px] leading-relaxed text-[var(--texto)]">
             Cerca de {dados.fase1.semanas} semanas, entregando primeiro a fatia que já gera decisão.
             O resto vira etapa 2, com o aprendizado da primeira.
           </p>
@@ -327,20 +328,20 @@ function Resultado({ dados, comentario, fonte }) {
         <ul className="mt-5 space-y-2.5">
           {dados.alertas.map((a) => (
             <li key={a} className="flex items-start gap-2.5">
-              <AlertTriangle size={15} className="mt-0.5 shrink-0 text-[#B45309]" />
-              <span className="text-[13px] leading-relaxed text-[#0F172A]">{a}</span>
+              <AlertTriangle size={15} className="mt-0.5 shrink-0 text-[var(--acento)]" />
+              <span className="text-[13px] leading-relaxed text-[var(--texto)]">{a}</span>
             </li>
           ))}
         </ul>
       )}
 
-      <div className="mt-5 border-t border-[#E5E5E5] pt-5">
-        <p className="text-[13px] font-semibold text-[#0F172A]">O que entra na entrega</p>
+      <div className="mt-5 border-t border-[var(--borda-forte)] pt-5">
+        <p className="text-[13px] font-semibold text-[var(--texto)]">O que entra na entrega</p>
         <ul className="mt-2.5 grid gap-2 sm:grid-cols-2">
           {dados.tipo.entrega.map((e) => (
             <li key={e} className="flex items-start gap-2">
-              <Check size={15} className="mt-0.5 shrink-0 text-[#255EDB]" />
-              <span className="text-[13px] leading-relaxed text-[#6B7280]">{e}</span>
+              <Check size={15} className="mt-0.5 shrink-0 text-[var(--acento)]" />
+              <span className="text-[13px] leading-relaxed text-[var(--texto-suave)]">{e}</span>
             </li>
           ))}
         </ul>
@@ -351,19 +352,19 @@ function Resultado({ dados, comentario, fonte }) {
           href={zap}
           target="_blank"
           rel="noreferrer noopener"
-          className="inline-flex h-11 items-center gap-2 rounded-[24px] bg-slate-900 px-6 text-xs font-semibold uppercase tracking-widest text-white transition-all duration-150 hover:bg-slate-800 active:scale-95"
+          className="inline-flex h-11 items-center gap-2 rounded-[24px] bg-[var(--texto)] px-6 text-xs font-semibold uppercase tracking-widest text-[var(--fundo)] transition-all duration-150 hover:opacity-90 active:scale-95"
         >
           <MessageCircle size={14} /> Receber a proposta
         </a>
         <a
           href={email}
-          className="inline-flex h-11 items-center gap-2 rounded-[24px] border border-[#E5E5E5] bg-white px-6 text-xs font-semibold uppercase tracking-widest text-[#0F172A] transition-all duration-150 hover:bg-[#F1F5F9]"
+          className="inline-flex h-11 items-center gap-2 rounded-[24px] border border-[var(--borda-forte)] bg-[var(--superficie)] px-6 text-xs font-semibold uppercase tracking-widest text-[var(--texto)] transition-all duration-150 hover:bg-[var(--pilula-fundo)]"
         >
           <Mail size={14} /> Mandar por e-mail
         </a>
       </div>
 
-      <p className="mt-4 text-[12px] leading-relaxed text-[#6B7280]">{AVISO}</p>
+      <p className="mt-4 text-[12px] leading-relaxed text-[var(--texto-suave)]">{AVISO}</p>
 
       {/* Os dois botoes acima abrem o app de mensagem e dependem da pessoa
           enviar. Aqui ela deixa o contato e quem corre atras sou eu. O escopo

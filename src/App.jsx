@@ -11,18 +11,18 @@ import Contato from './secoes/Contato.jsx'
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#F9F9F9]">
+    <div className="min-h-screen">
       <Cabecalho />
       <main>
         <Hero />
-        <ComoTrabalho />
-        <Cases />
-        <Trajetoria />
-        <Projetos />
-        <Servicos />
-        <Orcamento />
-        <StackFormacao />
-        <Contato />
+        <ComoTrabalho tom="claro" />
+        <Cases tom="escuro" />
+        <Trajetoria tom="claro" />
+        <Projetos tom="escuro" />
+        <Servicos tom="claro" />
+        <Orcamento tom="escuro" />
+        <StackFormacao tom="claro" />
+        <Contato tom="escuro" />
       </main>
     </div>
   )

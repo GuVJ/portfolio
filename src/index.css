@@ -22,6 +22,56 @@
   }
 }
 
+
+/* ---------------------------------------------------------------------------
+   Alternancia de tom entre secoes (preto, branco, preto...).
+   O FirstFinance e light-only; esta e a quarta adaptacao documentada.
+
+   Cada secao recebe `tema-claro` ou `tema-escuro` e os componentes leem estes
+   tokens em vez de cor fixa. Foi a unica forma de nao encher cada componente de
+   condicional — e garante que um cartao dentro de secao escura nunca fique
+   branco com texto branco, que foi exatamente o bug do CTA.
+   --------------------------------------------------------------------------- */
+.tema-claro {
+  --fundo: #f9f9f9;
+  --superficie: #ffffff;
+  --superficie-2: #f8fafc;
+  --borda: #f5f5f5;
+  --borda-forte: #e5e5e5;
+  --texto: #0f172a;
+  --texto-suave: #6b7280;
+  --rotulo: #64748b;
+  --pilula-fundo: #f1f5f9;
+  --pilula-texto: #4b5563;
+  --acento: #255edb;
+  --acento-fundo: #eaf1ff;
+  --acento-borda: #dce8ff;
+  --sombra: 0 2px 6px rgba(15, 23, 42, 0.04);
+  --sombra-alta: 0 8px 20px rgba(15, 23, 42, 0.06);
+
+  color: var(--texto);
+}
+
+.tema-escuro {
+  --fundo: #0b1220;
+  --superficie: #131c2e;
+  --superficie-2: #0f1728;
+  --borda: #1f2a3d;
+  --borda-forte: #2a3853;
+  --texto: #f1f5f9;
+  --texto-suave: #9fb0c6;
+  --rotulo: #8fa3bd;
+  --pilula-fundo: #1c273b;
+  --pilula-texto: #cbd5e1;
+  --acento: #8ab0f8;
+  --acento-fundo: #17233c;
+  --acento-borda: #2b3d61;
+  --sombra: 0 2px 6px rgba(0, 0, 0, 0.35);
+  --sombra-alta: 0 10px 26px rgba(0, 0, 0, 0.45);
+
+  color: var(--texto);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

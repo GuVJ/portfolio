@@ -12,8 +12,8 @@ import { mandarParaRadar } from '../logica/radar.js'
 import { perfil } from '../dados/perfil.js'
 
 const CAMPO =
-  'h-11 w-full rounded-[14px] border border-[#E5E5E5] bg-white px-4 text-sm text-[#0F172A] outline-none transition-all duration-150 placeholder:text-[#9CA3AF] focus:border-[#2F6FED] focus:shadow-[0_0_0_3px_rgba(47,111,237,0.1)]'
-const ROTULO = 'mb-1.5 block text-[13px] font-medium text-[#6B7280]'
+  'h-11 w-full rounded-[14px] border border-[var(--borda-forte)] bg-[var(--superficie)] px-4 text-sm text-[var(--texto)] outline-none transition-all duration-150 placeholder:text-[var(--texto-suave)] focus:border-[var(--acento)] focus:shadow-[0_0_0_3px_rgba(47,111,237,0.1)]'
+const ROTULO = 'mb-1.5 block text-[13px] font-medium text-[var(--texto-suave)]'
 
 export default function FormularioContato({ orcamento = null, titulo, descricao }) {
   const [form, setForm] = useState({
@@ -50,12 +50,12 @@ export default function FormularioContato({ orcamento = null, titulo, descricao 
 
   if (estado.fase === 'pronto') {
     return (
-      <div className="rounded-[20px] border border-[#bbf7d0] bg-[#EAFBF1] p-6">
+      <div className="rounded-[20px] border border-[var(--acento-borda)] bg-[var(--acento-fundo)] p-6">
         <div className="flex items-start gap-3">
-          <Check size={18} className="mt-0.5 shrink-0 text-[#15803D]" />
+          <Check size={18} className="mt-0.5 shrink-0 text-[var(--acento)]" />
           <div>
-            <p className="text-sm font-semibold text-[#0F172A]">Recebido. Obrigado!</p>
-            <p className="mt-1 text-[13px] leading-relaxed text-[#0F172A]">
+            <p className="text-sm font-semibold text-[var(--texto)]">Recebido. Obrigado!</p>
+            <p className="mt-1 text-[13px] leading-relaxed text-[var(--texto)]">
               Retorno em {estado.retorno || 'até 2 dias úteis'}. Se for urgente, me chama direto
               no WhatsApp que eu vejo na hora.
             </p>
@@ -66,9 +66,9 @@ export default function FormularioContato({ orcamento = null, titulo, descricao 
   }
 
   return (
-    <form onSubmit={enviar} className="rounded-[20px] border border-[#F5F5F5] bg-[#F8FAFC] p-6">
-      {titulo && <p className="text-base font-semibold text-[#0F172A]">{titulo}</p>}
-      {descricao && <p className="mt-1 text-[13px] leading-relaxed text-[#6B7280]">{descricao}</p>}
+    <form onSubmit={enviar} className="rounded-[20px] border border-[var(--borda)] bg-[var(--superficie-2)] p-6">
+      {titulo && <p className="text-base font-semibold text-[var(--texto)]">{titulo}</p>}
+      {descricao && <p className="mt-1 text-[13px] leading-relaxed text-[var(--texto-suave)]">{descricao}</p>}
 
       <div className="mt-5 grid gap-4 sm:grid-cols-2">
         <div>
@@ -119,16 +119,16 @@ export default function FormularioContato({ orcamento = null, titulo, descricao 
           onChange={(e) => setAceito(e.target.checked)}
           className="mt-0.5 h-4 w-4 shrink-0 accent-[#2F6FED]"
         />
-        <span className="text-[13px] leading-relaxed text-[#6B7280]">
+        <span className="text-[13px] leading-relaxed text-[var(--texto-suave)]">
           Autorizo o Gustavo a guardar esses dados para me responder sobre este contato. Não vira
           lista de e-mail, e é só pedir que eu apago.
         </span>
       </label>
 
       {estado.fase === 'erro' && (
-        <div className="mt-4 rounded-[14px] border border-[#fecaca] bg-[#FEECEC] p-4">
-          <p className="flex items-start gap-2 text-[13px] leading-relaxed text-[#0F172A]">
-            <AlertTriangle size={15} className="mt-0.5 shrink-0 text-[#DC2626]" />
+        <div className="mt-4 rounded-[14px] border border-[var(--borda-forte)] bg-[var(--pilula-fundo)] p-4">
+          <p className="flex items-start gap-2 text-[13px] leading-relaxed text-[var(--texto)]">
+            <AlertTriangle size={15} className="mt-0.5 shrink-0 text-[var(--texto)]" />
             Não consegui enviar ({estado.mensagem}). Me chama por um destes que funciona igual:
           </p>
           <div className="mt-3 flex flex-wrap gap-2">
@@ -136,13 +136,13 @@ export default function FormularioContato({ orcamento = null, titulo, descricao 
               href={`https://wa.me/${perfil.telefoneNumerico}`}
               target="_blank"
               rel="noreferrer noopener"
-              className="inline-flex h-10 items-center gap-2 rounded-[20px] bg-slate-900 px-5 text-xs font-semibold uppercase tracking-widest text-white transition-all duration-150 hover:bg-slate-800"
+              className="inline-flex h-10 items-center gap-2 rounded-[20px] bg-[var(--texto)] px-5 text-xs font-semibold uppercase tracking-widest text-[var(--fundo)] transition-all duration-150 hover:opacity-90"
             >
               <MessageCircle size={14} /> WhatsApp
             </a>
             <a
               href={`mailto:${perfil.email}`}
-              className="inline-flex h-10 items-center gap-2 rounded-[20px] border border-[#E5E5E5] bg-white px-5 text-xs font-semibold uppercase tracking-widest text-[#0F172A] transition-all duration-150 hover:bg-[#F1F5F9]"
+              className="inline-flex h-10 items-center gap-2 rounded-[20px] border border-[var(--borda-forte)] bg-[var(--superficie)] px-5 text-xs font-semibold uppercase tracking-widest text-[var(--texto)] transition-all duration-150 hover:bg-[var(--pilula-fundo)]"
             >
               <Mail size={14} /> E-mail
             </a>
@@ -153,7 +153,7 @@ export default function FormularioContato({ orcamento = null, titulo, descricao 
       <button
         type="submit"
         disabled={!aceito || estado.fase === 'enviando'}
-        className="mt-5 inline-flex h-11 items-center gap-2 rounded-[24px] bg-slate-900 px-6 text-xs font-semibold uppercase tracking-widest text-white transition-all duration-150 hover:bg-slate-800 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 disabled:active:scale-100"
+        className="mt-5 inline-flex h-11 items-center gap-2 rounded-[24px] bg-[var(--texto)] px-6 text-xs font-semibold uppercase tracking-widest text-[var(--fundo)] transition-all duration-150 hover:opacity-90 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 disabled:active:scale-100"
       >
         <Send size={14} />
         {estado.fase === 'enviando' ? 'Enviando…' : orcamento ? 'Quero receber a proposta' : 'Enviar'}

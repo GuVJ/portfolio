@@ -2,9 +2,10 @@ import { ArrowUpRight, ShieldCheck } from 'lucide-react'
 import { Secao, Card, Pill } from '../componentes/ui.jsx'
 import { projetos } from '../dados/perfil.js'
 
-export default function Projetos() {
+export default function Projetos({ tom }) {
   return (
     <Secao
+      tom={tom}
       id="projetos"
       rotulo="Projetos"
       titulo="Construídos inteiros, do banco à tela."
@@ -17,10 +18,10 @@ export default function Projetos() {
               <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-2.5">
-                    <h3 className="text-lg font-semibold text-[#0F172A]">{p.nome}</h3>
+                    <h3 className="text-lg font-semibold text-[var(--texto)]">{p.nome}</h3>
                     <Pill tom={p.destaque ? 'info' : 'neutro'}>{p.tipo}</Pill>
                   </div>
-                  <p className="mt-3 max-w-[70ch] text-sm leading-relaxed text-[#6B7280]">{p.resumo}</p>
+                  <p className="mt-3 max-w-[70ch] text-sm leading-relaxed text-[var(--texto-suave)]">{p.resumo}</p>
                 </div>
 
                 {p.links.length > 0 && (
@@ -31,7 +32,7 @@ export default function Projetos() {
                         href={l.url}
                         target="_blank"
                         rel="noreferrer noopener"
-                        className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-[#F5F5F5] bg-white px-3.5 text-[13px] font-semibold text-[#0F172A] transition-all duration-150 hover:bg-[#F1F5F9]"
+                        className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-[var(--borda)] bg-[var(--superficie)] px-3.5 text-[13px] font-semibold text-[var(--texto)] transition-all duration-150 hover:bg-[var(--pilula-fundo)]"
                       >
                         {l.rotulo} <ArrowUpRight size={14} />
                       </a>
@@ -44,9 +45,9 @@ export default function Projetos() {
                   primeira duvida e se a coisa age sozinha. A resposta vem antes
                   da pergunta. */}
               {p.destaque && (
-                <div className="mt-5 flex items-start gap-3 rounded-[16px] border border-[#DCE8FF] bg-[#EAF1FF] p-4">
-                  <ShieldCheck size={18} className="mt-0.5 shrink-0 text-[#2F6FED]" />
-                  <p className="text-[13px] font-medium leading-relaxed text-[#0F172A]">
+                <div className="mt-5 flex items-start gap-3 rounded-[16px] border border-[var(--acento-borda)] bg-[var(--acento-fundo)] p-4">
+                  <ShieldCheck size={18} className="mt-0.5 shrink-0 text-[var(--acento)]" />
+                  <p className="text-[13px] font-medium leading-relaxed text-[var(--texto)]">
                     Assistente, não robô: sugere e a pessoa decide. Nada sai sem alguém ler e clicar.
                   </p>
                 </div>
@@ -55,15 +56,15 @@ export default function Projetos() {
               <ul className="mt-6 space-y-2.5">
                 {p.detalhes.map((d) => (
                   <li key={d} className="flex items-start gap-2.5">
-                    <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#2F6FED]" />
-                    <span className="text-sm leading-relaxed text-[#0F172A]">{d}</span>
+                    <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--acento)]" />
+                    <span className="text-sm leading-relaxed text-[var(--texto)]">{d}</span>
                   </li>
                 ))}
               </ul>
 
             </div>
 
-            <div className="flex flex-wrap gap-1.5 border-t border-[#F5F5F5] bg-[#F8FAFC] px-6 py-4 md:px-8">
+            <div className="flex flex-wrap gap-1.5 border-t border-[var(--borda)] bg-[var(--superficie-2)] px-6 py-4 md:px-8">
               {p.stack.map((s) => (
                 <Pill key={s}>{s}</Pill>
               ))}

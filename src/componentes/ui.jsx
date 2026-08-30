@@ -1,41 +1,43 @@
 // Primitivos visuais do FirstFinance (DESIGN_SYSTEM.md).
 //
-// Uma adaptacao consciente: o documento define container em max-w-[1600px],
-// que serve para tela de aplicacao com sidebar. Este e um site de leitura
-// corrida, entao o container fica em 1100px — largura em que a linha de texto
-// nao passa de ~75 caracteres.
+// Adaptacoes conscientes, todas documentadas no README:
+// 1. Tailwind entra no build, nao por CDN.
+// 2. Container em 1100px, nao 1600px — site de leitura, nao tela de app.
+// 3. Alguns tons apagados do documento foram escurecidos para passar no WCAG AA.
+// 4. O documento e light-only; aqui as secoes alternam claro e escuro.
 //
-// REGRA DESTE ARQUIVO: cor de fundo e cor de texto saem sempre de uma variante
-// (`tom`), nunca de `className`. Passar `bg-slate-900` por className num
-// componente que ja tem `bg-white` na base nao funciona — as duas utilidades
-// tem a mesma especificidade e quem vence e a que o Tailwind gera por ultimo
-// no CSS, que e `bg-white`. Foi assim que o CTA escuro nasceu branco com texto
-// branco em cima. `className` aqui e para espacamento e layout.
-
-const SOMBRA_CARD = { boxShadow: '0 2px 6px rgba(15, 23, 42, 0.04)' }
-const SOMBRA_HOVER = { boxShadow: '0 8px 20px rgba(15, 23, 42, 0.06)' }
-const SOMBRA_ESCURA = { boxShadow: '0 12px 32px rgba(15, 23, 42, 0.18)' }
+// REGRA DESTE ARQUIVO: cor sai de token (`var(--...)`) ou de variante (`tom`),
+// nunca de `className`. Passar `bg-slate-900` por className num componente que
+// ja tem `bg-white` na base nao funciona — as duas utilidades tem a mesma
+// especificidade e vence a que o Tailwind gera por ultimo no CSS. Foi assim que
+// o CTA escuro nasceu branco com texto branco em cima.
+//
+// Os tokens vivem em `src/index.css`, nas classes `.tema-claro` e
+// `.tema-escuro`. Cada secao aplica uma das duas e tudo dentro dela se adapta.
 
 export function Container({ children, className = '' }) {
   return <div className={`mx-auto w-full max-w-[1100px] px-6 md:px-8 ${className}`}>{children}</div>
 }
 
-export function Secao({ id, rotulo, titulo, descricao, children, className = '' }) {
+export function Secao({ id, rotulo, titulo, descricao, children, tom = 'claro', className = '' }) {
   return (
-    <section id={id} className={`scroll-mt-24 py-10 md:py-14 ${className}`}>
+    <section
+      id={id}
+      className={`tema-${tom} scroll-mt-24 bg-[var(--fundo)] py-12 md:py-16 ${className}`}
+    >
       <Container>
         {rotulo && (
-          <p className="mb-3 text-[10px] font-semibold uppercase tracking-widest text-slate-500">
+          <p className="mb-3 text-[10px] font-semibold uppercase tracking-widest text-[var(--rotulo)]">
             {rotulo}
           </p>
         )}
         {titulo && (
-          <h2 className="max-w-[24ch] text-2xl font-bold leading-tight text-[#0F172A] md:text-[32px]">
+          <h2 className="max-w-[24ch] text-2xl font-bold leading-tight text-[var(--texto)] md:text-[32px]">
             {titulo}
           </h2>
         )}
         {descricao && (
-          <p className="mt-4 max-w-[65ch] text-sm leading-relaxed text-[#6B7280] md:text-base">
+          <p className="mt-4 max-w-[65ch] text-sm leading-relaxed text-[var(--texto-suave)] md:text-base">
             {descricao}
           </p>
         )}
@@ -45,26 +47,30 @@ export function Secao({ id, rotulo, titulo, descricao, children, className = '' 
   )
 }
 
-const TONS_CARD = {
-  claro: 'border-[#F5F5F5] bg-white',
-  escuro: 'border-slate-800 bg-slate-900',
-}
-
-export function Card({ children, className = '', tom = 'claro', comHover = false, ...props }) {
-  const escuro = tom === 'escuro'
-  const repouso = escuro ? SOMBRA_ESCURA : SOMBRA_CARD
+export function Card({ children, className = '', tom = 'superficie', comHover = false, ...props }) {
+  // `superficie` acompanha o tema da secao. `contraste` e o cartao de destaque,
+  // que inverte em relacao ao fundo em que estiver — escuro no claro, claro no
+  // escuro — sem precisar saber qual dos dois e.
+  const contraste = tom === 'contraste'
+  const pintura = contraste
+    ? 'border-[var(--texto)] bg-[var(--texto)]'
+    : 'border-[var(--borda)] bg-[var(--superficie)]'
 
   return (
     <div
-      className={`rounded-[24px] border transition-all duration-150 ${TONS_CARD[tom]} ${
+      className={`rounded-[24px] border transition-all duration-150 ${pintura} ${
         comHover ? 'hover:-translate-y-0.5' : ''
       } ${className}`}
-      style={repouso}
+      style={{ boxShadow: contraste ? 'var(--sombra-alta)' : 'var(--sombra)' }}
       onMouseEnter={
-        comHover && !escuro ? (e) => Object.assign(e.currentTarget.style, SOMBRA_HOVER) : undefined
+        comHover && !contraste
+          ? (e) => (e.currentTarget.style.boxShadow = 'var(--sombra-alta)')
+          : undefined
       }
       onMouseLeave={
-        comHover && !escuro ? (e) => Object.assign(e.currentTarget.style, repouso) : undefined
+        comHover && !contraste
+          ? (e) => (e.currentTarget.style.boxShadow = 'var(--sombra)')
+          : undefined
       }
       {...props}
     >
@@ -75,10 +81,10 @@ export function Card({ children, className = '', tom = 'claro', comHover = false
 
 export function Pill({ children, tom = 'neutro' }) {
   const tons = {
-    neutro: 'bg-[#F1F5F9] text-[#4B5563]',
-    info: 'bg-[#EAF1FF] text-[#255EDB]',
-    sucesso: 'bg-[#EAFBF1] text-[#15803D]',
-    escuro: 'bg-slate-900 text-white',
+    neutro: 'bg-[var(--pilula-fundo)] text-[var(--pilula-texto)]',
+    info: 'bg-[var(--acento-fundo)] text-[var(--acento)]',
+    sucesso: 'bg-[var(--acento-fundo)] text-[var(--acento)]',
+    contraste: 'bg-[var(--texto)] text-[var(--fundo)]',
   }
   return (
     <span
@@ -91,10 +97,10 @@ export function Pill({ children, tom = 'neutro' }) {
 
 export function CaixaIcone({ children, tom = 'info' }) {
   const tons = {
-    info: 'bg-[#EAF1FF] text-[#255EDB]',
-    escuro: 'bg-slate-900 text-white',
-    neutro: 'bg-[#F1F5F9] text-[#4B5563]',
-    sucesso: 'bg-[#EAFBF1] text-[#15803D]',
+    info: 'bg-[var(--acento-fundo)] text-[var(--acento)]',
+    contraste: 'bg-[var(--texto)] text-[var(--fundo)]',
+    neutro: 'bg-[var(--pilula-fundo)] text-[var(--pilula-texto)]',
+    sucesso: 'bg-[var(--acento-fundo)] text-[var(--acento)]',
   }
   return (
     <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-[14px] ${tons[tom]}`}>
@@ -104,12 +110,13 @@ export function CaixaIcone({ children, tom = 'info' }) {
 }
 
 const TONS_BOTAO = {
-  // CTA escuro do design system: slate-900, maiuscula, tracking largo.
-  escuro: 'bg-slate-900 text-white hover:bg-slate-800 border border-transparent',
-  // Secundario sobre fundo claro.
-  claro: 'bg-white text-[#0F172A] border border-[#E5E5E5] hover:bg-[#F1F5F9]',
-  // Para usar DENTRO de um card escuro: inverte, branco com texto slate-900.
-  branco: 'bg-white text-slate-900 border border-transparent hover:bg-slate-100',
+  // CTA principal: inverte em relacao ao fundo. Em secao clara sai o slate-900
+  // do design system; em secao escura sai claro, como o FirstSites faz.
+  escuro: 'bg-[var(--texto)] text-[var(--fundo)] border border-transparent hover:opacity-90',
+  claro:
+    'bg-[var(--superficie)] text-[var(--texto)] border border-[var(--borda-forte)] hover:bg-[var(--pilula-fundo)]',
+  // Para usar DENTRO de um cartao de contraste, onde o fundo ja esta invertido.
+  branco: 'bg-[var(--fundo)] text-[var(--texto)] border border-transparent hover:opacity-90',
 }
 
 export function Botao({ children, href, tom = 'escuro', className = '', ...props }) {

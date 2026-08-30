@@ -4,13 +4,13 @@ import { pitch, numeros } from '../dados/perfil.js'
 
 export default function Hero() {
   return (
-    <section id="topo" className="pb-10 pt-10 md:pb-14 md:pt-16">
+    <section id="topo" className="tema-escuro bg-[var(--fundo)] pb-14 pt-14 md:pb-20 md:pt-20">
       <Container>
-        <h1 className="max-w-[18ch] text-[34px] font-bold leading-[1.08] tracking-tight text-[#0F172A] md:text-[54px]">
+        <h1 className="max-w-[18ch] text-[34px] font-bold leading-[1.08] tracking-tight text-[var(--texto)] md:text-[54px]">
           {pitch.titulo}
         </h1>
 
-        <p className="mt-6 max-w-[64ch] text-base leading-relaxed text-[#6B7280] md:text-lg">
+        <p className="mt-6 max-w-[64ch] text-base leading-relaxed text-[var(--texto-suave)] md:text-lg">
           {pitch.texto}
         </p>
 
@@ -30,17 +30,17 @@ export default function Hero() {
           {numeros.map((n) => (
             <div
               key={n.rotulo}
-              className="rounded-[20px] border border-[#F5F5F5] bg-white p-5"
-              style={{ boxShadow: '0 2px 6px rgba(15, 23, 42, 0.04)' }}
+              className="rounded-[20px] border border-[var(--borda)] bg-[var(--superficie)] p-5"
+              style={{ boxShadow: 'var(--sombra)' }}
             >
-              <dt className="text-[30px] font-bold leading-none tracking-tight text-[#0F172A]">
+              <dt className="text-[30px] font-bold leading-none tracking-tight text-[var(--texto)]">
                 {n.valor}
               </dt>
               <dd>
-                <span className="mt-2 block text-[13px] font-semibold leading-snug text-[#0F172A]">
+                <span className="mt-2 block text-[13px] font-semibold leading-snug text-[var(--texto)]">
                   {n.rotulo}
                 </span>
-                <span className="mt-2 block text-[13px] leading-relaxed text-[#6B7280]">
+                <span className="mt-2 block text-[13px] leading-relaxed text-[var(--texto-suave)]">
                   {n.detalhe}
                 </span>
               </dd>
