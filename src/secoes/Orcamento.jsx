@@ -209,7 +209,7 @@ export default function Orcamento({ tom }) {
                   key={o.id}
                   type="button"
                   onClick={() => escolher(o.rotulo, PERGUNTAS[etapa.indice].id, o.id)}
-                  className="rounded-full border border-[var(--borda-forte)] bg-[var(--superficie)] px-4 py-2.5 text-[13px] font-semibold text-[var(--texto)] transition-all duration-150 hover:border-[#2F6FED] hover:bg-[var(--acento-fundo)] hover:text-[var(--acento)]"
+                  className="rounded-full border border-[var(--borda-forte)] bg-[var(--superficie)] px-4 py-2.5 text-[13px] font-semibold text-[var(--texto)] transition-all duration-150 hover:border-[var(--acento)] hover:bg-[var(--acento-fundo)] hover:text-[var(--acento)]"
                 >
                   {o.rotulo}
                 </button>

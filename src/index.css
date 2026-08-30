@@ -9,14 +9,14 @@
 
   body {
     font-family: 'Google Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
-    background-color: #f9f9f9;
-    color: #0f172a;
+    background-color: #151616;
+    color: #f7f7f7;
     -webkit-font-smoothing: antialiased;
   }
 
   /* O foco de teclado precisa continuar visivel em tudo que e navegavel. */
   :focus-visible {
-    outline: 2px solid #2f6fed;
+    outline: 2px solid currentColor;
     outline-offset: 3px;
     border-radius: 8px;
   }
@@ -31,43 +31,50 @@
    tokens em vez de cor fixa. Foi a unica forma de nao encher cada componente de
    condicional — e garante que um cartao dentro de secao escura nunca fique
    branco com texto branco, que foi exatamente o bug do CTA.
+
+   As cores vieram medidas do CSS do firstsites.com.br: #151616 e o fundo
+   escuro mais usado la (nao e preto puro), #1E2022 a superficie sobre ele,
+   #F7F7F7 o fundo claro e o texto sobre escuro, #1A1D1D o texto sobre claro.
+
+   NAO HA AZUL. A enfase e por contraste, nao por matiz: `--acento` e a propria
+   cor de texto do tema. Foi decisao do Gustavo em 28/08.
    --------------------------------------------------------------------------- */
 .tema-claro {
-  --fundo: #f9f9f9;
+  --fundo: #f7f7f7;
   --superficie: #ffffff;
-  --superficie-2: #f8fafc;
-  --borda: #f5f5f5;
-  --borda-forte: #e5e5e5;
-  --texto: #0f172a;
-  --texto-suave: #6b7280;
-  --rotulo: #64748b;
-  --pilula-fundo: #f1f5f9;
-  --pilula-texto: #4b5563;
-  --acento: #255edb;
-  --acento-fundo: #eaf1ff;
-  --acento-borda: #dce8ff;
-  --sombra: 0 2px 6px rgba(15, 23, 42, 0.04);
-  --sombra-alta: 0 8px 20px rgba(15, 23, 42, 0.06);
+  --superficie-2: #f1f1f1;
+  --borda: #eaeaea;
+  --borda-forte: #dcdcdc;
+  --texto: #1a1d1d;
+  --texto-suave: #5c6060;
+  --rotulo: #6b7070;
+  --pilula-fundo: #ededed;
+  --pilula-texto: #45494a;
+  --acento: #1a1d1d;
+  --acento-fundo: #e8e8e8;
+  --acento-borda: #d6d6d6;
+  --sombra: 0 2px 6px rgba(26, 29, 29, 0.05);
+  --sombra-alta: 0 8px 20px rgba(26, 29, 29, 0.08);
 
   color: var(--texto);
 }
 
 .tema-escuro {
-  --fundo: #0b1220;
-  --superficie: #131c2e;
-  --superficie-2: #0f1728;
-  --borda: #1f2a3d;
-  --borda-forte: #2a3853;
-  --texto: #f1f5f9;
-  --texto-suave: #9fb0c6;
-  --rotulo: #8fa3bd;
-  --pilula-fundo: #1c273b;
-  --pilula-texto: #cbd5e1;
-  --acento: #8ab0f8;
-  --acento-fundo: #17233c;
-  --acento-borda: #2b3d61;
-  --sombra: 0 2px 6px rgba(0, 0, 0, 0.35);
-  --sombra-alta: 0 10px 26px rgba(0, 0, 0, 0.45);
+  --fundo: #151616;
+  --superficie: #1e2022;
+  --superficie-2: #191919;
+  --borda: #26292b;
+  --borda-forte: #35393b;
+  --texto: #f7f7f7;
+  --texto-suave: #a6abac;
+  --rotulo: #9aa0a1;
+  --pilula-fundo: #24272a;
+  --pilula-texto: #d6dadb;
+  --acento: #f7f7f7;
+  --acento-fundo: #24272a;
+  --acento-borda: #35393b;
+  --sombra: 0 2px 6px rgba(0, 0, 0, 0.4);
+  --sombra-alta: 0 10px 26px rgba(0, 0, 0, 0.5);
 
   color: var(--texto);
 }

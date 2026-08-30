@@ -23,7 +23,7 @@ export function Secao({ id, rotulo, titulo, descricao, children, tom = 'claro', 
   return (
     <section
       id={id}
-      className={`tema-${tom} scroll-mt-24 bg-[var(--fundo)] py-12 md:py-16 ${className}`}
+      className={`tema-${tom} scroll-mt-4 bg-[var(--fundo)] py-12 md:py-16 ${className}`}
     >
       <Container>
         {rotulo && (

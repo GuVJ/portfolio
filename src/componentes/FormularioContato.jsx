@@ -117,7 +117,7 @@ export default function FormularioContato({ orcamento = null, titulo, descricao 
           type="checkbox"
           checked={aceito}
           onChange={(e) => setAceito(e.target.checked)}
-          className="mt-0.5 h-4 w-4 shrink-0 accent-[#2F6FED]"
+          className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--acento)]"
         />
         <span className="text-[13px] leading-relaxed text-[var(--texto-suave)]">
           Autorizo o Gustavo a guardar esses dados para me responder sobre este contato. Não vira

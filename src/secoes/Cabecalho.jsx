@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import { Container } from '../componentes/ui.jsx'
 
@@ -13,20 +13,11 @@ const LINKS = [
 
 export default function Cabecalho() {
   const [aberto, setAberto] = useState(false)
-  const [rolou, setRolou] = useState(false)
 
-  useEffect(() => {
-    const aoRolar = () => setRolou(window.scrollY > 8)
-    aoRolar()
-    window.addEventListener('scroll', aoRolar, { passive: true })
-    return () => window.removeEventListener('scroll', aoRolar)
-  }, [])
 
   return (
     <header
-      className={`tema-escuro sticky top-0 z-50 bg-[var(--fundo)] backdrop-blur-sm transition-all duration-150 ${
-        rolou ? 'border-b border-[var(--borda-forte)]' : 'border-b border-transparent'
-      }`}
+      className="tema-escuro border-b border-[var(--borda)] bg-[var(--fundo)]"
     >
       <Container>
         <div className="flex h-16 items-center justify-between">
