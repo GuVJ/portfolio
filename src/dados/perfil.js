@@ -96,7 +96,7 @@ export const stack = [
   },
   {
     grupo: 'Inteligência artificial',
-    itens: ['GenAI no Databricks', 'Integração com LLM em produção', 'Gemini API'],
+    itens: ['GenAI no Databricks', 'Claude Code', 'Integração com LLM em produção', 'Gemini API'],
   },
 ]
 
