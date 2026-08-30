@@ -37,8 +37,8 @@ export default function Contato() {
       <Secao
         id="contato"
         rotulo="Contato"
-        titulo="Vaga CLT ou projeto PJ — os dois caminhos passam por aqui."
-        descricao="Respondo rápido. Se for projeto, me manda o problema em duas linhas que eu já digo se dá para resolver e por onde eu começaria."
+        titulo="Vaga CLT ou projeto PJ."
+        descricao="Se for projeto, manda o problema em duas linhas."
       >
         <div className="grid gap-4 sm:grid-cols-2">
           {CANAIS.map(({ rotulo, valor, href, Icone, principal }) => (

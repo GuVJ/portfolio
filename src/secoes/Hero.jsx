@@ -47,15 +47,6 @@ export default function Hero() {
             </div>
           ))}
         </dl>
-        <p className="mt-4 text-[13px] text-[#6B7280]">
-          <a
-            href="#cases"
-            className="font-semibold text-[#255EDB] underline underline-offset-4 transition-all duration-150 hover:text-[#2F6FED]"
-          >
-            Ver cada um desses números por inteiro
-          </a>{' '}
-          — o que estava quebrado, o que eu construí e o que mudou.
-        </p>
       </Container>
     </section>
   )

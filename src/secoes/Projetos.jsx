@@ -7,8 +7,8 @@ export default function Projetos() {
     <Secao
       id="projetos"
       rotulo="Projetos"
-      titulo="Coisas que eu construí inteiras, do banco de dados à tela."
-      descricao="Nem todo analista de dados escreve o sistema que gera o dado. Os três têm IA generativa em produção — e nos três vale a mesma regra: o número sai do banco, o modelo cuida só da linguagem. É o que separa uma ferramenta em que dá para confiar de um chat com nome novo."
+      titulo="Construídos inteiros, do banco à tela."
+      descricao="Os três têm IA generativa em produção — e nos três o número sai do banco, o modelo cuida só da linguagem."
     >
       <div className="space-y-4">
         {projetos.map((p) => (
@@ -47,8 +47,7 @@ export default function Projetos() {
                 <div className="mt-5 flex items-start gap-3 rounded-[16px] border border-[#DCE8FF] bg-[#EAF1FF] p-4">
                   <ShieldCheck size={18} className="mt-0.5 shrink-0 text-[#2F6FED]" />
                   <p className="text-[13px] font-medium leading-relaxed text-[#0F172A]">
-                    Assistente, não robô. O sistema sugere e a pessoa decide — nenhuma mensagem sai
-                    sem alguém ler e clicar, e a confirmação é deliberada em dois passos.
+                    Assistente, não robô: sugere e a pessoa decide. Nada sai sem alguém ler e clicar.
                   </p>
                 </div>
               )}
@@ -62,7 +61,6 @@ export default function Projetos() {
                 ))}
               </ul>
 
-              {p.nota && <p className="mt-5 text-[13px] italic leading-relaxed text-[#6B7280]">{p.nota}</p>}
             </div>
 
             <div className="flex flex-wrap gap-1.5 border-t border-[#F5F5F5] bg-[#F8FAFC] px-6 py-4 md:px-8">

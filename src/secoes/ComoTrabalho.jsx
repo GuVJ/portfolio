@@ -9,8 +9,7 @@ export default function ComoTrabalho() {
     <Secao
       id="metodo"
       rotulo="Como eu trabalho"
-      titulo="A maior parte dos problemas de RH não é falta de gráfico."
-      descricao="É falta de processo, de dado confiável ou de alguém que traduza a pergunta da liderança em número. Meu trabalho começa antes do dashboard e termina depois dele."
+      titulo="O problema raramente é falta de gráfico."
     >
       <div className="grid gap-4 md:grid-cols-2">
         {comoTrabalho.map((etapa, i) => {

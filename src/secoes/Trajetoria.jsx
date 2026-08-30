@@ -1,4 +1,3 @@
-import { Check } from 'lucide-react'
 import { Secao, Card, Pill } from '../componentes/ui.jsx'
 import { trajetoria } from '../dados/perfil.js'
 
@@ -7,8 +6,7 @@ export default function Trajetoria() {
     <Secao
       id="trajetoria"
       rotulo="Trajetória"
-      titulo="Sete anos na mesma especialidade, em cinco operações diferentes."
-      descricao="Banco, fintech, telecom e tecnologia. O que muda é a régua de maturidade do RH — o que se repete é entregar o dado que a liderança usa para decidir."
+      titulo="Sete anos, cinco operações."
     >
       <div className="space-y-4">
         {trajetoria.map((exp) => (
@@ -23,24 +21,13 @@ export default function Trajetoria() {
               </div>
               <div className="shrink-0 md:text-right">
                 <p className="text-[13px] font-medium text-[#6B7280]">{exp.periodo}</p>
-                <p className="mt-0.5 text-[12px] text-[#6B7280]">{exp.setor}</p>
               </div>
             </div>
 
             <p className="mt-4 max-w-[70ch] text-sm leading-relaxed text-[#6B7280]">{exp.resumo}</p>
 
-            {exp.destaques.length > 0 && (
-              <ul className="mt-5 space-y-2.5">
-                {exp.destaques.map((d) => (
-                  <li key={d} className="flex items-start gap-2.5">
-                    <Check size={16} className="mt-0.5 shrink-0 text-[#2F6FED]" />
-                    <span className="text-sm leading-relaxed text-[#0F172A]">{d}</span>
-                  </li>
-                ))}
-              </ul>
-            )}
 
-            <div className="mt-5 flex flex-wrap gap-1.5 border-t border-[#F5F5F5] pt-5">
+            <div className="mt-4 flex flex-wrap gap-1.5">
               {exp.stack.map((s) => (
                 <Pill key={s}>{s}</Pill>
               ))}

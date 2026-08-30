@@ -124,8 +124,8 @@ export default function Orcamento() {
     <Secao
       id="orcamento"
       rotulo="Assistente de projeto"
-      titulo="Organize o seu projeto antes de marcar reunião."
-      descricao="Cinco perguntas e você sai com o escopo, o prazo e um resumo pronto para enviar — a proposta chega em seguida. E sim: este assistente é ele próprio uma amostra do que eu construo. A conversa é de IA, mas o escopo sai de um cálculo em código que não muda de ideia entre uma pessoa e outra."
+      titulo="Escopo e prazo antes da reunião."
+      descricao="Cinco perguntas. A conversa é de IA, o cálculo é em código."
     >
       <Card className="overflow-hidden">
         <div className="flex items-center gap-3 border-b border-[#F5F5F5] px-6 py-4">

@@ -10,7 +10,7 @@ export default function Servicos() {
       id="servicos"
       rotulo="Projetos PJ"
       titulo="O que eu entrego como projeto fechado."
-      descricao="Escopo definido, prazo combinado e a coisa no ar. Trabalho de ponta a ponta: converso com quem vai usar, trato o dado, construo e entrego funcionando — sem depender de um time inteiro para começar."
+      descricao="Escopo definido, prazo combinado e a coisa no ar."
     >
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {servicos.map((s, i) => {
@@ -36,8 +36,7 @@ export default function Servicos() {
               Tem um processo que ainda roda na mão?
             </h3>
             <p className="mt-2.5 text-sm leading-relaxed text-slate-300">
-              Responde cinco perguntas do assistente aqui embaixo e sai com o escopo e o prazo
-              organizados — e o resumo pronto para eu te mandar a proposta.
+              Cinco perguntas e você sai com escopo, prazo e o resumo pronto para a proposta.
             </p>
           </div>
           <Botao tom="branco" href="#orcamento" className="shrink-0">
