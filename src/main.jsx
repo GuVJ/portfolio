@@ -1,6 +1,9 @@
 import React from 'react'
 import { createRoot, hydrateRoot } from 'react-dom/client'
 import App from './App.jsx'
+
+import './fontes.css'
+
 import './index.css'
 
 const raiz = document.getElementById('root')
