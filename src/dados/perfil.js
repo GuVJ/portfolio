@@ -8,8 +8,6 @@
 
 export const perfil = {
   nome: 'Gustavo Virgilio Joaquim',
-  cargo: 'Coordenador de People Analytics',
-  empresa: 'Alloha Fibra',
   local: 'São Paulo, SP',
   email: 'gustavovj.emp@gmail.com',
   telefone: '+55 11 96342-2466',

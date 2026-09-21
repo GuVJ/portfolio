@@ -16,7 +16,7 @@ export default function Trajetoria({ tom }) {
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-2.5">
                   <h3 className="text-lg font-semibold text-[var(--texto)]">{exp.empresa}</h3>
-                  {exp.atual && <Pill tom="sucesso">Atual</Pill>}
+                  {exp.atual && <Pill tom="info">Atual</Pill>}
                 </div>
                 <p className="mt-1 text-sm font-medium text-[var(--acento)]">{exp.cargo}</p>
               </div>

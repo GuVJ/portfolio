@@ -21,11 +21,11 @@ export function Container({ children, className = '' }) {
   return <div className={`mx-auto w-full max-w-[1100px] px-6 md:px-8 ${className}`}>{children}</div>
 }
 
-export function Secao({ id, rotulo, titulo, descricao, children, tom = 'claro', className = '' }) {
+export function Secao({ id, rotulo, titulo, descricao, children, tom = 'claro' }) {
   return (
     <section
       id={id}
-      className={`tema-${tom} scroll-mt-4 bg-[var(--fundo)] py-12 md:py-16 ${className}`}
+      className={`tema-${tom} scroll-mt-4 bg-[var(--fundo)] py-12 md:py-16`}
     >
       <Container>
         {rotulo && (
@@ -72,7 +72,6 @@ export function Pill({ children, tom = 'neutro' }) {
   const tons = {
     neutro: 'bg-[var(--pilula-fundo)] text-[var(--pilula-texto)]',
     info: 'bg-[var(--acento-fundo)] text-[var(--acento)]',
-    sucesso: 'bg-[var(--acento-fundo)] text-[var(--acento)]',
     contraste: 'bg-[var(--texto)] text-[var(--fundo)]',
   }
   return (
@@ -89,7 +88,6 @@ export function CaixaIcone({ children, tom = 'info' }) {
     info: 'bg-[var(--acento-fundo)] text-[var(--acento)]',
     contraste: 'bg-[var(--texto)] text-[var(--fundo)]',
     neutro: 'bg-[var(--pilula-fundo)] text-[var(--pilula-texto)]',
-    sucesso: 'bg-[var(--acento-fundo)] text-[var(--acento)]',
   }
   return (
     <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-[14px] ${tons[tom]}`}>
@@ -123,11 +121,3 @@ export function Botao({ children, href, tom = 'escuro', className = '', ...props
   )
 }
 
-// Mantidos como atalhos de leitura; ambos delegam para Botao.
-export function BotaoEscuro(props) {
-  return <Botao tom="escuro" {...props} />
-}
-
-export function BotaoClaro(props) {
-  return <Botao tom="claro" {...props} />
-}
