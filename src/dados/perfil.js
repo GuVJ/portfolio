@@ -43,6 +43,7 @@ export const comoTrabalho = [
 export const trajetoria = [
   {
     empresa: 'Alloha Fibra',
+    logo: '/logos/alloha.png',
     cargo: 'Coordenador de People Analytics',
     periodo: 'fev/2025 - jun/2026',
     resumo: 'Time de duas pessoas, nove áreas de RH atendidas numa operação nacional.',
@@ -50,6 +51,7 @@ export const trajetoria = [
   },
   {
     empresa: 'Banco BMG',
+    logo: '/logos/bmg.png',
     cargo: 'People Analytics Sênior',
     periodo: 'mar/2024 - nov/2024',
     resumo: 'Estruturação de People Analytics para o grupo financeiro.',
@@ -57,6 +59,7 @@ export const trajetoria = [
   },
   {
     empresa: 'Dock',
+    logo: '/logos/dock.png',
     cargo: 'People Analyst → Senior People Analyst',
     periodo: 'mar/2022 - mar/2024',
     resumo: 'Do requisito ao sistema no ar. Offboarding, sobreaviso e banco de horas.',
@@ -64,6 +67,9 @@ export const trajetoria = [
   },
   {
     empresa: 'Adventures',
+    // Sem logo: nao achei arquivo oficial recuperavel, e desenhar uma
+    // aproximacao da marca de outra empresa seria pior que nao ter. O
+    // componente cai no monograma.
     cargo: 'People Analyst',
     periodo: 'jul/2021 - mar/2022',
     resumo: 'Implantei a área de People Analytics do zero.',
@@ -71,6 +77,7 @@ export const trajetoria = [
   },
   {
     empresa: 'Santander',
+    logo: '/logos/santander.png',
     cargo: 'Jovem Aprendiz → Estagiário → Analista Jr',
     periodo: 'dez/2017 - jul/2021',
     resumo: 'Onde começou. Automação em VBA aos 18 e a primeira plataforma de RH que construí.',
