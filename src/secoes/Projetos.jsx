@@ -9,7 +9,7 @@ export default function Projetos({ tom }) {
       id="projetos"
       rotulo="Projetos"
       titulo="Construídos inteiros, do banco à tela."
-      descricao="Os três têm IA generativa em produção — e nos três o número sai do banco, o modelo cuida só da linguagem."
+      descricao="Os três têm IA generativa em produção, e nos três o número sai do banco: o modelo cuida só da linguagem."
     >
       <div className="space-y-4">
         {projetos.map((p) => (
