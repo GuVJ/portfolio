@@ -46,8 +46,7 @@ export const trajetoria = [
   {
     empresa: 'Alloha Fibra',
     cargo: 'Coordenador de People Analytics',
-    periodo: 'fev/2025 - atual',
-    atual: true,
+    periodo: 'fev/2025 - jun/2026',
     resumo: 'Time de duas pessoas, nove áreas de RH atendidas numa operação nacional.',
     stack: ['Databricks', 'SQL', 'Power BI', 'Python', 'GenAI'],
   },
@@ -180,7 +179,7 @@ export const casesProfissionais = [
   {
     titulo: 'O ritmo semanal que gera a decisão',
     empresa: 'Alloha Fibra',
-    periodo: '2025 - atual',
+    periodo: '2025 - 2026',
     resumo: 'Painel que ninguém abre não muda decisão. Reunião semanal em cima do dashboard, com fechamento mensal.',
     resultados: [
       '9 áreas atendidas como suporte principal',
