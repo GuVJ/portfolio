@@ -2,81 +2,209 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===========================================================================
+ * SISTEMA VISUAL — copiado do da AURAIA (projeto `chad-ia-landing`), a pedido.
+ *
+ * As tres decisoes que sustentam o sistema la, e que valem aqui igual:
+ *
+ * 1. O ACENTO DA MARCA E DETALHE, NAO SUPERFICIE. O gradiente aparece em tres
+ *    lugares SO: a marca no cabecalho, o botao principal e o trecho destacado
+ *    do titulo. Em texto pequeno ou borda de 1px ele vira sujeira.
+ * 2. O CTA PRIMARIO E BRANCO SOLIDO sobre preto. E o gesto que separa
+ *    ferramenta seria de landing de infoproduto, e tem contraste melhor que
+ *    qualquer gradiente.
+ * 3. A HIERARQUIA E FEITA DE TIPOGRAFIA, ESPACO E UMA LINHA DE 1px. Nao de
+ *    sombra e brilho. Por isso `--sombra` aqui e `none`.
+ *
+ * Os tons sao separados de proposito: cada degrau esta a 6 a 8 pontos do
+ * anterior, entao cartao, fundo e superficie elevada se distinguem sem
+ * precisar de borda. Branco puro nao aparece em lugar nenhum: em fundo quase
+ * preto ele vibra, #f7f7f7 assenta.
+ *
+ * Os NOMES dos tokens sao os que ja existiam aqui (--fundo, --superficie,
+ * --texto, --acento e companhia) de proposito: trocar so os valores manteve
+ * todos os componentes funcionando sem uma segunda varredura de classes.
+ * =========================================================================== */
+
+:root {
+  /* A marca, em tres paradas. `--marca` e o ponto medio em cor cheia: vai em
+     ponto, borda, rotulo e qualquer coisa abaixo de 20px. O gradiente inteiro
+     fica em `.fundo-marca` e `.texto-marca`. */
+  --marca: #7c5cf0;
+  --marca-2: #1e7cf0;
+  --marca-3: #c44ce8;
+}
+
+/* A alternancia entre secoes sobrevive, mas dentro da paleta: os dois pretos
+   mais fundos, nao preto contra branco. A AURAIA nao tem lado claro. */
+.tema-escuro {
+  --fundo: #06070a;
+}
+
+.tema-claro {
+  --fundo: #0d0f13;
+}
+
+.tema-escuro,
+.tema-claro {
+  --superficie: #15171b;
+  --superficie-2: #1d2025;
+  --elevado: #262a30;
+
+  --borda: #23272d;
+  --borda-forte: #363c45;
+
+  --texto: #f7f7f7;
+  --texto-suave: #8b929d;
+  --rotulo: #8b929d;
+
+  --pilula-fundo: #1d2025;
+  --pilula-texto: #c6ccd4;
+
+  --acento: #9d86f5;
+  --acento-fundo: #181430;
+  --acento-borda: #2f2760;
+
+  --sombra: none;
+  --sombra-alta: none;
+
+  color: var(--texto);
+}
+
 @layer base {
   html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
   }
 
   body {
-    font-family: 'Google Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
-    background-color: #151616;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    background-color: #06070a;
     color: #f7f7f7;
-    -webkit-font-smoothing: antialiased;
+    /* Numeros de largura fixa na pagina inteira: metade dela e metrica, e
+       digito de largura variavel faz coluna de numero dancar. */
+    font-variant-numeric: tabular-nums;
   }
 
-  /* O foco de teclado precisa continuar visivel em tudo que e navegavel. */
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
   :focus-visible {
-    outline: 2px solid currentColor;
+    outline: 2px solid var(--marca);
     outline-offset: 3px;
-    border-radius: 8px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--marca);
+    color: #fff;
+  }
+
+  /* Titulo grande pede tracking negativo, e pede mais quanto maior. Sem isso um
+     display de 54px parece espacado demais ao lado de um corpo de 16px: e a
+     diferenca entre tipografia e fonte grande. */
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.022em;
+    text-wrap: balance;
+  }
+
+  /* No corpo, `pretty` mexe so no fim do paragrafo pra evitar a linha final com
+     uma palavra so, sem reequilibrar o bloco inteiro. */
+  p,
+  li,
+  dd {
+    text-wrap: pretty;
   }
 }
 
+@layer components {
+  /* A etiqueta monoespacada que abre cada secao. E o elemento que mais empurra
+     a pagina pro lado "instrumento de engenharia": mono, pequena, caixa alta,
+     com um marcador de 5px da cor da marca. */
+  .etiqueta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--tinta-3, #8b929d);
+  }
 
-/* ---------------------------------------------------------------------------
-   Alternancia de tom entre secoes (preto, branco, preto...).
-   O FirstFinance e light-only; esta e a quarta adaptacao documentada.
+  .etiqueta::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 1px;
+    background: var(--marca);
+    flex: none;
+  }
 
-   Cada secao recebe `tema-claro` ou `tema-escuro` e os componentes leem estes
-   tokens em vez de cor fixa. Foi a unica forma de nao encher cada componente de
-   condicional — e garante que um cartao dentro de secao escura nunca fique
-   branco com texto branco, que foi exatamente o bug do CTA.
+  .fundo-marca {
+    background-image: linear-gradient(118deg, var(--marca-3), var(--marca) 46%, var(--marca-2));
+  }
 
-   As cores vieram medidas do CSS do firstsites.com.br: #151616 e o fundo
-   escuro mais usado la (nao e preto puro), #1E2022 a superficie sobre ele,
-   #F7F7F7 o fundo claro e o texto sobre escuro, #1A1D1D o texto sobre claro.
+  /* `texto-marca` usa background-clip, o unico jeito de um gradiente virar
+     letra. Exige `color: transparent`, entao qualquer texto que o receba
+     precisa ter tamanho: em corpo de 14px o degrade some e sobra um borrao. */
+  .texto-marca {
+    background-image: linear-gradient(118deg, var(--marca-3), var(--marca) 46%, var(--marca-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 
-   NAO HA AZUL. A enfase e por contraste, nao por matiz: `--acento` e a propria
-   cor de texto do tema. Foi decisao do Gustavo em 28/08.
-   --------------------------------------------------------------------------- */
-.tema-claro {
-  --fundo: #f7f7f7;
-  --superficie: #ffffff;
-  --superficie-2: #f1f1f1;
-  --borda: #eaeaea;
-  --borda-forte: #dcdcdc;
-  --texto: #1a1d1d;
-  --texto-suave: #5c6060;
-  --rotulo: #6b7070;
-  --pilula-fundo: #ededed;
-  --pilula-texto: #45494a;
-  --acento: #1a1d1d;
-  --acento-fundo: #e8e8e8;
-  --acento-borda: #d6d6d6;
-  --sombra: 0 2px 6px rgba(26, 29, 29, 0.05);
-  --sombra-alta: 0 8px 20px rgba(26, 29, 29, 0.08);
-
-  color: var(--texto);
+  /* A grade de fundo, no lugar dos brilhos borrados. Um gradiente desfocado diz
+     "bonito"; uma grade tecnica de 1px diz "instrumento". A mascara faz ela
+     sumir nas bordas pra nao virar papel de parede. */
+  .grade {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to right, #ffffff08 1px, transparent 1px),
+      linear-gradient(to bottom, #ffffff08 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 20%, transparent 75%);
+  }
 }
 
-.tema-escuro {
-  --fundo: #151616;
-  --superficie: #1e2022;
-  --superficie-2: #191919;
-  --borda: #26292b;
-  --borda-forte: #35393b;
-  --texto: #f7f7f7;
-  --texto-suave: #a6abac;
-  --rotulo: #9aa0a1;
-  --pilula-fundo: #24272a;
-  --pilula-texto: #d6dadb;
-  --acento: #f7f7f7;
-  --acento-fundo: #24272a;
-  --acento-borda: #35393b;
-  --sombra: 0 2px 6px rgba(0, 0, 0, 0.4);
-  --sombra-alta: 0 10px 26px rgba(0, 0, 0, 0.5);
+@media (prefers-reduced-motion: no-preference) {
+  .surgir {
+    animation: surgir 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
 
-  color: var(--texto);
+  /* A entrada do topo e escalonada, nao simultanea: os blocos subindo juntos
+     leem como uma imagem so aparecendo; em cascata leem como uma pagina se
+     montando na ordem em que se le. */
+  .atraso-1 {
+    animation-delay: 70ms;
+  }
+  .atraso-2 {
+    animation-delay: 140ms;
+  }
+  .atraso-3 {
+    animation-delay: 210ms;
+  }
+}
+
+@keyframes surgir {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

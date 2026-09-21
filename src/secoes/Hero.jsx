@@ -4,40 +4,48 @@ import { pitch, numeros } from '../dados/perfil.js'
 
 export default function Hero() {
   return (
-    <section id="topo" className="tema-escuro bg-[var(--fundo)] pb-14 pt-14 md:pb-20 md:pt-20">
-      <Container>
-        <h1 className="max-w-[18ch] text-[34px] font-bold leading-[1.08] tracking-tight text-[var(--texto)] md:text-[54px]">
-          {pitch.titulo}
+    <section
+      id="topo"
+      className="tema-escuro relative overflow-hidden bg-[var(--fundo)] pb-16 pt-16 md:pb-24 md:pt-24"
+    >
+      {/* Grade técnica no lugar de brilho borrado. Um gradiente desfocado diz
+          "bonito"; uma grade de 1px diz "instrumento". */}
+      <div className="grade" aria-hidden="true" />
+
+      <Container className="relative">
+        <p className="etiqueta surgir">People Analytics &amp; BI</p>
+
+        {/* Um dos três lugares onde o gradiente da marca aparece. O trecho
+            destacado tem tamanho suficiente para o degradê existir: em corpo de
+            14px ele some e sobra um borrão. */}
+        <h1 className="surgir atraso-1 mt-5 max-w-[17ch] text-[36px] font-semibold leading-[1.05] text-[var(--texto)] md:text-[58px]">
+          Dado de gente que vira <span className="texto-marca">decisão de negócio</span>.
         </h1>
 
-        <p className="mt-6 max-w-[64ch] text-base leading-relaxed text-[var(--texto-suave)] md:text-lg">
+        <p className="surgir atraso-2 mt-6 max-w-[62ch] text-base leading-relaxed text-[var(--texto-suave)] md:text-lg">
           {pitch.texto}
         </p>
 
-        <div className="mt-9 flex flex-wrap items-center gap-3">
+        <div className="surgir atraso-3 mt-9 flex flex-wrap items-center gap-3">
           {pitch.acoes.map((a) => (
             <Botao key={a.alvo} href={a.alvo} tom={a.principal ? 'escuro' : 'claro'}>
               {a.rotulo}
-              {a.principal && <ArrowRight size={14} />}
+              {a.principal && <ArrowRight size={15} />}
             </Botao>
           ))}
         </div>
 
         {/* Cada número vem com a frase que explica de onde ele saiu. Número sem
-            procedência ao lado é só enfeite — e é a primeira coisa que um
+            procedência ao lado é só enfeite, e é a primeira coisa que um
             entrevistador pergunta. */}
-        <dl className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <dl className="mt-14 grid gap-px overflow-hidden rounded-[14px] border border-[var(--borda)] bg-[var(--borda)] sm:grid-cols-2 lg:grid-cols-4">
           {numeros.map((n) => (
-            <div
-              key={n.rotulo}
-              className="rounded-[20px] border border-[var(--borda)] bg-[var(--superficie)] p-5"
-              style={{ boxShadow: 'var(--sombra)' }}
-            >
-              <dt className="text-[30px] font-bold leading-none tracking-tight text-[var(--texto)]">
+            <div key={n.rotulo} className="bg-[var(--superficie)] p-6">
+              <dt className="text-[32px] font-semibold leading-none text-[var(--texto)]">
                 {n.valor}
               </dt>
               <dd>
-                <span className="mt-2 block text-[13px] font-semibold leading-snug text-[var(--texto)]">
+                <span className="mt-3 block text-[13px] font-medium leading-snug text-[var(--texto)]">
                   {n.rotulo}
                 </span>
                 <span className="mt-2 block text-[13px] leading-relaxed text-[var(--texto-suave)]">

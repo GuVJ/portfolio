@@ -13,11 +13,15 @@
     <meta property="og:description" content="7 anos transformando dado de gente em decisao de negocio. Dashboards, automacao e ferramentas sob medida." />
     <meta property="og:locale" content="pt_BR" />
 
-    <!-- O design system pede a Google Sans, mas a familia nao existe publicamente no
-         Google Fonts e este link retorna 404. Fica aqui por conformidade com o
-         documento; quem sustenta a tipografia e a pilha de reserva do Tailwind. -->
+    <!-- Inter e JetBrains Mono, as duas fontes da AURAIA. Aqui o Google Fonts
+         carrega normalmente (nao ha a CSP fechada que existe la), entao nao
+         precisa do next/font. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div id="root"></div>

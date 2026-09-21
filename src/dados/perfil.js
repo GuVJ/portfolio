@@ -21,7 +21,7 @@ export const perfil = {
 export const pitch = {
   titulo: 'Dado de gente que vira decisão de negócio.',
   texto:
-    'Sete anos em People Analytics, do estágio no Santander à coordenação na Alloha Fibra. Levanto o requisito, trato o dado, construo o painel — e a ferramenta, quando o painel não resolve.',
+    'Sete anos em People Analytics, do estágio no Santander à coordenação na Alloha Fibra. Levanto o requisito, trato o dado, construo o painel. E a ferramenta, quando o painel não resolve.',
   acoes: [
     { rotulo: 'Ver os cases', alvo: '#cases', principal: true },
     { rotulo: 'Tenho um projeto', alvo: '#orcamento' },
@@ -46,7 +46,7 @@ export const trajetoria = [
   {
     empresa: 'Alloha Fibra',
     cargo: 'Coordenador de People Analytics',
-    periodo: 'fev/2025 — atual',
+    periodo: 'fev/2025 - atual',
     atual: true,
     resumo: 'Time de duas pessoas, nove áreas de RH atendidas numa operação nacional.',
     stack: ['Databricks', 'SQL', 'Power BI', 'Python', 'GenAI'],
@@ -54,28 +54,28 @@ export const trajetoria = [
   {
     empresa: 'Banco BMG',
     cargo: 'People Analytics Sênior',
-    periodo: 'mar/2024 — nov/2024',
+    periodo: 'mar/2024 - nov/2024',
     resumo: 'Estruturação de People Analytics para o grupo financeiro.',
     stack: ['SQL', 'Power BI'],
   },
   {
     empresa: 'Dock',
     cargo: 'People Analyst → Senior People Analyst',
-    periodo: 'mar/2022 — mar/2024',
+    periodo: 'mar/2022 - mar/2024',
     resumo: 'Do requisito ao sistema no ar. Offboarding, sobreaviso e banco de horas.',
     stack: ['PostgreSQL', 'AppSheet', 'Looker Studio', 'Python'],
   },
   {
     empresa: 'Adventures',
     cargo: 'People Analyst',
-    periodo: 'jul/2021 — mar/2022',
+    periodo: 'jul/2021 - mar/2022',
     resumo: 'Implantei a área de People Analytics do zero.',
     stack: ['Python', 'pandas', 'Looker Studio'],
   },
   {
     empresa: 'Santander',
     cargo: 'Jovem Aprendiz → Estagiário → Analista Jr',
-    periodo: 'dez/2017 — jul/2021',
+    periodo: 'dez/2017 - jul/2021',
     resumo: 'Onde começou. Automação em VBA aos 18 e a primeira plataforma de RH que construí.',
     stack: ['Power BI', 'Qlik Sense', 'SQL', 'SAS', 'VBA'],
   },
@@ -105,7 +105,7 @@ export const projetos = [
     nome: 'People Analytics Platform',
     tipo: 'Projeto autoral',
     resumo:
-      'Plataforma completa de People Analytics sobre uma montadora fictícia — do headcount ao desempenho.',
+      'Plataforma completa de People Analytics sobre uma montadora fictícia, do headcount ao desempenho.',
     detalhes: [
       'Copiloto de IA e modelo preditivo de risco de saída',
       'Simulador de custo de rescisão pela Lei 12.506/2011',
@@ -144,7 +144,7 @@ export const casesProfissionais = [
   {
     titulo: 'Offboarding que deixou de ser risco',
     empresa: 'Dock',
-    periodo: '2023 — 2024',
+    periodo: '2023 - 2024',
     resumo: 'Quatro áreas, nenhum sistema ligando uma na outra. Construí a ferramenta que orquestrou o fluxo inteiro.',
     resultados: [
       '700+ desligamentos processados',
@@ -156,7 +156,7 @@ export const casesProfissionais = [
   {
     titulo: 'Banco de horas que parou de sangrar',
     empresa: 'Dock',
-    periodo: '2022 — 2023',
+    periodo: '2022 - 2023',
     resumo: 'O passivo crescia sem gestão e o custo só aparecia na conta. Ferramenta de saldo mais insight semanal por gestor.',
     resultados: [
       '80% de corte no custo',
@@ -168,7 +168,7 @@ export const casesProfissionais = [
   {
     titulo: 'Uma área de People Analytics do zero',
     empresa: 'Adventures',
-    periodo: '2021 — 2022',
+    periodo: '2021 - 2022',
     resumo: 'Não existia indicador, fonte nem rotina. Montei a área inteira, do ETL ao portal de RH.',
     resultados: [
       'Área implantada do zero em 9 meses',
@@ -180,7 +180,7 @@ export const casesProfissionais = [
   {
     titulo: 'O ritmo semanal que gera a decisão',
     empresa: 'Alloha Fibra',
-    periodo: '2025 — atual',
+    periodo: '2025 - atual',
     resumo: 'Painel que ninguém abre não muda decisão. Reunião semanal em cima do dashboard, com fechamento mensal.',
     resultados: [
       '9 áreas atendidas como suporte principal',
@@ -204,19 +204,19 @@ export const formacao = [
   {
     curso: 'Análise e Desenvolvimento de Sistemas',
     grau: 'Tecnólogo',
-    instituicao: 'Fatec Ipiranga — Pastor Enéas Tognini',
-    periodo: '2019 — 2024',
+    instituicao: 'Fatec Ipiranga, Pastor Enéas Tognini',
+    periodo: '2019 - 2024',
   },
   {
     curso: 'Técnico em Segurança do Trabalho',
     grau: 'Ensino Técnico',
     instituicao: 'Etec Pirituba',
-    periodo: '2017 — 2018',
+    periodo: '2017 - 2018',
   },
   {
     curso: 'Técnico em Tecnologia da Informação',
     grau: 'Ensino Técnico',
     instituicao: 'Etec Paulistano',
-    periodo: '2014 — 2016',
+    periodo: '2014 - 2016',
   },
 ]

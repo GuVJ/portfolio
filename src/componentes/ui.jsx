@@ -1,10 +1,12 @@
-// Primitivos visuais do FirstFinance (DESIGN_SYSTEM.md).
+// Primitivos visuais copiados do sistema da AURAIA (`chad-ia-landing`).
 //
-// Adaptacoes conscientes, todas documentadas no README:
-// 1. Tailwind entra no build, nao por CDN.
-// 2. Container em 1100px, nao 1600px — site de leitura, nao tela de app.
-// 3. Alguns tons apagados do documento foram escurecidos para passar no WCAG AA.
-// 4. O documento e light-only; aqui as secoes alternam claro e escuro.
+// O que mudou em relacao ao FirstFinance, que era o padrao antes:
+// 1. Raio de 14px no cartao, nao 24px. A AURAIA nao usa pilula.
+// 2. Sem sombra. A hierarquia vem de tipografia, espaco e uma linha de 1px.
+// 3. O rotulo de secao virou `.etiqueta`: mono, 11px, caixa alta, com um
+//    marcador de 5px da cor da marca antes dele.
+// 4. O CTA primario e branco solido sobre preto. O gradiente da marca fica em
+//    tres lugares so, e um deles e o botao `marca`.
 //
 // REGRA DESTE ARQUIVO: cor sai de token (`var(--...)`) ou de variante (`tom`),
 // nunca de `className`. Passar `bg-slate-900` por className num componente que
@@ -27,9 +29,7 @@ export function Secao({ id, rotulo, titulo, descricao, children, tom = 'claro', 
     >
       <Container>
         {rotulo && (
-          <p className="mb-3 text-[10px] font-semibold uppercase tracking-widest text-[var(--rotulo)]">
-            {rotulo}
-          </p>
+          <p className="etiqueta mb-4">{rotulo}</p>
         )}
         {titulo && (
           <h2 className="max-w-[24ch] text-2xl font-bold leading-tight text-[var(--texto)] md:text-[32px]">
@@ -58,20 +58,9 @@ export function Card({ children, className = '', tom = 'superficie', comHover = 
 
   return (
     <div
-      className={`rounded-[24px] border transition-all duration-150 ${pintura} ${
-        comHover ? 'hover:-translate-y-0.5' : ''
+      className={`rounded-[14px] border transition-all duration-150 ${pintura} ${
+        comHover ? 'hover:border-[var(--borda-forte)]' : ''
       } ${className}`}
-      style={{ boxShadow: contraste ? 'var(--sombra-alta)' : 'var(--sombra)' }}
-      onMouseEnter={
-        comHover && !contraste
-          ? (e) => (e.currentTarget.style.boxShadow = 'var(--sombra-alta)')
-          : undefined
-      }
-      onMouseLeave={
-        comHover && !contraste
-          ? (e) => (e.currentTarget.style.boxShadow = 'var(--sombra)')
-          : undefined
-      }
       {...props}
     >
       {children}
@@ -110,11 +99,14 @@ export function CaixaIcone({ children, tom = 'info' }) {
 }
 
 const TONS_BOTAO = {
-  // CTA principal: inverte em relacao ao fundo. Em secao clara sai o slate-900
-  // do design system; em secao escura sai claro, como o FirstSites faz.
-  escuro: 'bg-[var(--texto)] text-[var(--fundo)] border border-transparent hover:opacity-90',
+  // O CTA primario da AURAIA: branco solido sobre preto. Contraste melhor que
+  // qualquer gradiente, e e o gesto que separa ferramenta seria de infoproduto.
+  escuro: 'bg-[var(--texto)] text-[var(--fundo)] border border-transparent hover:bg-white',
+  // Secundario: contorno, sem preenchimento.
   claro:
-    'bg-[var(--superficie)] text-[var(--texto)] border border-[var(--borda-forte)] hover:bg-[var(--pilula-fundo)]',
+    'bg-transparent text-[var(--texto)] border border-[var(--borda-forte)] hover:bg-[var(--superficie)]',
+  // Um dos TRES lugares onde o gradiente da marca aparece. Nao espalhar.
+  marca: 'fundo-marca text-white border border-transparent hover:brightness-110',
   // Para usar DENTRO de um cartao de contraste, onde o fundo ja esta invertido.
   branco: 'bg-[var(--fundo)] text-[var(--texto)] border border-transparent hover:opacity-90',
 }
@@ -123,7 +115,7 @@ export function Botao({ children, href, tom = 'escuro', className = '', ...props
   return (
     <a
       href={href}
-      className={`inline-flex items-center justify-center gap-2 rounded-[24px] px-8 py-3 text-xs font-semibold uppercase tracking-widest transition-all duration-150 active:scale-95 ${TONS_BOTAO[tom]} ${className}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-150 active:scale-[0.97] ${TONS_BOTAO[tom]} ${className}`}
       {...props}
     >
       {children}

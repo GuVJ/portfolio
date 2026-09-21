@@ -40,7 +40,7 @@ export const TIPOS = [
   {
     id: 'ferramenta',
     rotulo: 'Ferramenta interna sob medida',
-    descricao: 'Cadastro, fluxo de aprovação, trilha de auditoria — quando o problema é processo, não gráfico.',
+    descricao: 'Cadastro, fluxo de aprovação, trilha de auditoria: quando o problema é processo, não gráfico.',
     horas: 90,
     entrega: ['Levantamento com quem usa', 'Banco e regras', 'Telas', 'Deploy e ajuste pós-uso'],
   },
@@ -75,7 +75,7 @@ export const PERGUNTAS = [
   {
     id: 'fonte',
     pergunta: 'De onde vem o dado hoje?',
-    ajuda: 'É o que mais mexe no prazo — dado espalhado custa mais que dado organizado.',
+    ajuda: 'É o que mais mexe no prazo: dado espalhado custa mais que dado organizado.',
     opcoes: [
       { id: 'planilha', rotulo: 'Planilha ou CSV', fator: 1.0 },
       { id: 'banco', rotulo: 'Banco de dados ou sistema com API', fator: 1.15 },
@@ -84,7 +84,7 @@ export const PERGUNTAS = [
         id: 'naosei',
         rotulo: 'Ainda não sei',
         fator: 1.25,
-        alerta: 'Como a origem do dado ainda não está clara, a primeira etapa vira um diagnóstico curto — e a faixa aperta depois dele.',
+        alerta: 'Como a origem do dado ainda não está clara, a primeira etapa vira um diagnóstico curto, e a faixa aperta depois dele.',
       },
     ],
   },
@@ -93,9 +93,9 @@ export const PERGUNTAS = [
     pergunta: 'Qual o tamanho da coisa?',
     ajuda: 'Uma tela e um indicador é bem diferente de um ciclo inteiro.',
     opcoes: [
-      { id: 'pequeno', rotulo: 'Enxuto — um painel, um processo', fator: 0.7 },
-      { id: 'medio', rotulo: 'Médio — alguns painéis ou telas', fator: 1.0 },
-      { id: 'grande', rotulo: 'Grande — uma área inteira', fator: 1.6 },
+      { id: 'pequeno', rotulo: 'Enxuto: um painel, um processo', fator: 0.7 },
+      { id: 'medio', rotulo: 'Médio: alguns painéis ou telas', fator: 1.0 },
+      { id: 'grande', rotulo: 'Grande: uma área inteira', fator: 1.6 },
     ],
   },
   {
@@ -141,8 +141,8 @@ export const ROTEIRO = {
     'Oi. Sou o assistente do Gustavo. Faço cinco perguntas para entender o que você precisa e te devolvo o escopo e o prazo já organizados.',
   comoFunciona: 'Leva menos de um minuto. No fim você leva o resumo pronto para enviar, e o Gustavo já responde com a proposta.',
   primeiraPergunta: 'Para começar: que tipo de projeto é?',
-  pedidoDeTexto: 'Quer contar em uma ou duas linhas o que trava hoje? Ajuda a apontar o risco certo — mas pode pular.',
-  encerramento: 'Pronto — é isso que eu entendi do seu projeto. Manda o resumo pelo botão que o Gustavo volta com a proposta.',
+  pedidoDeTexto: 'Quer contar em uma ou duas linhas o que trava hoje? Ajuda a apontar o risco certo, mas pode pular.',
+  encerramento: 'Pronto, é isso que eu entendi do seu projeto. Manda o resumo pelo botão que o Gustavo volta com a proposta.',
 }
 
 // Explica por que nao ha numero na tela. Sem isto, a ausencia de preco parece

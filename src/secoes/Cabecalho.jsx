@@ -22,10 +22,12 @@ export default function Cabecalho() {
       <Container>
         <div className="flex h-16 items-center justify-between">
           <a href="#topo" className="flex items-center gap-2.5">
-            <span className="flex h-8 w-8 items-center justify-center rounded-[10px] bg-[var(--texto)] text-[13px] font-bold text-[var(--fundo)]">
+            <span className="fundo-marca flex h-8 w-8 items-center justify-center rounded-[9px] text-[13px] font-semibold text-white">
               G
             </span>
-            <span className="text-sm font-semibold text-[var(--texto)]">Gustavo Virgilio</span>
+            <span className="text-sm font-medium tracking-[0.02em] text-[var(--texto)]">
+              Gustavo Virgilio
+            </span>
           </a>
 
           <nav className="hidden items-center gap-1 md:flex">
@@ -40,7 +42,7 @@ export default function Cabecalho() {
             ))}
             <a
               href="#contato"
-              className="ml-2 inline-flex h-9 items-center rounded-lg bg-[var(--acento)] px-3.5 text-[13px] font-semibold text-[var(--fundo)] transition-all duration-150 hover:opacity-90"
+              className="fundo-marca ml-2 inline-flex h-9 items-center rounded-lg px-4 text-[13px] font-semibold text-white transition-[filter] duration-150 hover:brightness-110"
             >
               Falar comigo
             </a>
@@ -51,7 +53,7 @@ export default function Cabecalho() {
             onClick={() => setAberto((v) => !v)}
             aria-label={aberto ? 'Fechar menu' : 'Abrir menu'}
             aria-expanded={aberto}
-            className="flex h-10 w-10 items-center justify-center rounded-[16px] text-[var(--rotulo)] transition-all duration-150 hover:bg-[var(--pilula-fundo)] hover:text-[var(--texto)] md:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-lg text-[var(--texto-suave)] transition-all duration-150 hover:bg-[var(--pilula-fundo)] hover:text-[var(--texto)] md:hidden"
           >
             {aberto ? <X size={18} /> : <Menu size={18} />}
           </button>
@@ -72,7 +74,7 @@ export default function Cabecalho() {
             <a
               href="#contato"
               onClick={() => setAberto(false)}
-              className="mt-1 inline-flex h-10 items-center justify-center rounded-lg bg-[var(--acento)] px-3.5 text-[13px] font-semibold text-[var(--fundo)]"
+              className="fundo-marca mt-1 inline-flex h-10 items-center justify-center rounded-lg px-4 text-[13px] font-semibold text-white"
             >
               Falar comigo
             </a>
