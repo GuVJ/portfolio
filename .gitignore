@@ -8,3 +8,6 @@ dist
 
 # Tabela de precos: fica fora do repo publico
 precos.private.js
+
+# Bundle temporario do pre-render
+dist-servidor

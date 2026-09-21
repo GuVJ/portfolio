@@ -3,18 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gustavo Virgilio Joaquim — People Analytics & Business Intelligence</title>
-    <meta name="description" content="Coordenador de People Analytics com 7 anos de experiencia. Dashboards, automacao e ferramentas internas que reduzem custo de RH. Disponivel para posicoes CLT e projetos PJ." />
+
+    <!-- O título carrega os termos que alguém realmente digita: a especialidade,
+         a sigla e a cidade. "Portfólio" ninguém busca. -->
+    <title>Gustavo Virgilio Joaquim | People Analytics e BI em São Paulo</title>
+    <meta
+      name="description"
+      content="Sete anos de People Analytics no Santander, Dock, BMG e Alloha Fibra. Dashboards, automação de processo e ferramentas internas que reduzem custo de RH. Disponível para posição CLT e para projeto fechado como PJ."
+    />
     <meta name="author" content="Gustavo Virgilio Joaquim" />
+    <link rel="canonical" href="https://gustavovj.vercel.app/" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Gustavo Virgilio Joaquim — People Analytics & BI" />
-    <meta property="og:description" content="7 anos transformando dado de gente em decisao de negocio. Dashboards, automacao e ferramentas sob medida." />
+    <meta property="og:type" content="profile" />
+    <meta property="og:url" content="https://gustavovj.vercel.app/" />
+    <meta property="og:site_name" content="Gustavo Virgilio Joaquim" />
+    <meta property="og:title" content="Gustavo Virgilio Joaquim | People Analytics e BI" />
+    <meta
+      property="og:description"
+      content="Dado de gente que vira decisão de negócio. Sete anos de People Analytics, dashboards, automação e ferramentas internas sob medida."
+    />
     <meta property="og:locale" content="pt_BR" />
+    <meta name="twitter:card" content="summary_large_image" />
 
     <!-- Inter e JetBrains Mono, as duas fontes da AURAIA. Aqui o Google Fonts
-         carrega normalmente (nao ha a CSP fechada que existe la), entao nao
+         carrega normalmente (não há a CSP fechada que existe lá), então não
          precisa do next/font. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,6 +35,126 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Dados estruturados. Dois nós ligados pelo mesmo `@id`: a Pessoa, que é o
+         que buscador e ferramenta de IA usam para saber de quem se trata, e o
+         Serviço, que é o que responde "quem faz isso em São Paulo".
+         Fica aqui no HTML, e não no React, para o robô enxergar sem rodar JS. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://gustavovj.vercel.app/#pessoa",
+            "name": "Gustavo Virgilio Joaquim",
+            "url": "https://gustavovj.vercel.app/",
+            "email": "gustavovj.emp@gmail.com",
+            "telephone": "+55-11-96342-2466",
+            "jobTitle": "Especialista em People Analytics e Business Intelligence",
+            "description": "Sete anos de People Analytics dentro do RH, do estágio no Santander à coordenação na Alloha Fibra. Constrói dashboards, automações e ferramentas internas que reduzem custo de pessoas.",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "São Paulo",
+              "addressRegion": "SP",
+              "addressCountry": "BR"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/gustavo-virgilio-joaquim",
+              "https://github.com/GuVJ"
+            ],
+            "knowsAbout": [
+              "People Analytics",
+              "Business Intelligence",
+              "Power BI",
+              "SQL",
+              "Python",
+              "Databricks",
+              "Turnover",
+              "Absenteísmo",
+              "Banco de horas",
+              "Headcount",
+              "Indicadores de RH",
+              "Segurança do trabalho",
+              "IA generativa aplicada a dados"
+            ],
+            "alumniOf": [
+              {
+                "@type": "CollegeOrUniversity",
+                "name": "Fatec Ipiranga, Pastor Enéas Tognini"
+              }
+            ]
+          },
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://gustavovj.vercel.app/#servico",
+            "name": "Gustavo Virgilio Joaquim, People Analytics e BI",
+            "url": "https://gustavovj.vercel.app/",
+            "founder": { "@id": "https://gustavovj.vercel.app/#pessoa" },
+            "provider": { "@id": "https://gustavovj.vercel.app/#pessoa" },
+            "areaServed": [
+              { "@type": "City", "name": "São Paulo" },
+              { "@type": "Country", "name": "Brasil" }
+            ],
+            "description": "Projetos fechados de dashboard e BI, automação de processo, ferramenta interna sob medida, estruturação de People Analytics e IA acoplada a sistemas existentes.",
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Serviços",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Dashboards e BI",
+                    "description": "Do dado cru ao painel que a liderança abre toda semana."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Automação de processo",
+                    "description": "O relatório ou a planilha que alguém refaz na mão toda semana."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Ferramenta interna sob medida",
+                    "description": "Cadastro, aprovação e trilha de auditoria, com acesso por perfil."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "People Analytics do zero",
+                    "description": "Quais indicadores acompanhar, de onde tirar e quem olha."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "IA acoplada ao que já existe",
+                    "description": "Copiloto sobre a base da empresa, com o número vindo do banco."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Indicadores de segurança do trabalho",
+                    "description": "TRCF, LTIF, consumo de EPI e treinamentos de NR."
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -1,0 +1,12 @@
+# Libera tudo, inclusive os robos de treino de IA.
+#
+# O consenso de 2026 e bloquear bot de treino e liberar so o de busca, mas esse
+# conselho e para publisher protegendo conteudo. Aqui e o contrario: este site
+# existe para ser encontrado, e modelo futuro que conheca o nome e ativo, nao
+# perda. Por isso GPTBot, ClaudeBot e Google-Extended entram junto com os de
+# busca (OAI-SearchBot, Claude-SearchBot, PerplexityBot).
+
+User-agent: *
+Allow: /
+
+Sitemap: https://gustavovj.vercel.app/sitemap.xml
