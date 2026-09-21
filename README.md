@@ -116,6 +116,29 @@ printf '%s' "SUA_CHAVE" | vercel env add GEMINI_API_KEY production
 
 O `vercel.json` já exclui `/api/` do rewrite de SPA.
 
+## Cache e performance
+
+`vercel.json` define os cabecalhos de cache, e o schema da Vercel **nao aceita
+comentario** (`comment` derruba o deploy com "Schema verification failed"), entao
+a explicacao mora aqui:
+
+- **`/assets/*` e imutavel por um ano.** Todo arquivo ali tem hash de conteudo no
+  nome: mudou o conteudo, mudou o nome. Sem esse cabecalho a Vercel serve
+  `max-age=0, must-revalidate` e o navegador revalida JS, CSS e fonte a cada
+  visita.
+- **O HTML fica de fora de proposito.** O nome dele nao muda e ele aponta para os
+  assets novos a cada deploy, entao ele precisa ser sempre revalidado.
+
+As fontes sao hospedadas aqui, nao no Google Fonts (`src/fontes.css`). O `<link>`
+externo custava duas origens, cada uma com DNS e TLS proprios, e um stylesheet
+que bloqueava a renderizacao. A Inter e a variavel: um arquivo cobre os pesos
+100 a 900. As duas regras `@font-face` sao escritas a mao com o subconjunto
+latino, porque importar o pacote inteiro trazia cirilico, grego e vietnamita e
+inchava o CSS bloqueante de 17,7 para 31,3 kB.
+
+O `prerender.mjs` injeta o `preload` da Inter, que tem hash no nome e por isso
+nao pode ficar fixo no `index.html`.
+
 ## Deploy
 
 ```bash
